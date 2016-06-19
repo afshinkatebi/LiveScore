@@ -7,18 +7,24 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
 import com.example.afshin.livescore.R;
 import com.example.afshin.livescore.TeamActivity;
 
 import java.util.ArrayList;
+
 import DataModel.Event;
+import DataModel.Team;
 import Helpers.VolleySingleton;
 import Views.AutoNetworkImageView;
+import Views.CircleImageView;
 import Views.TextViewFont;
 
 
-public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> {
-    private ArrayList<Event> mDataset;
+public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder> {
+    private ArrayList<Team> mDataset;
 
 
     private Context context;
@@ -30,38 +36,38 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
     // you provide access to all the views for a data item in a view holder
     public class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public AutoNetworkImageView image;
+        public de.hdodenhof.circleimageview.CircleImageView image;
         public TextViewFont name;
         public View v;
 
         public ViewHolder(View v) {
             super(v);
-            name = (TextViewFont) v.findViewById(R.id.event_name);
-            image = (AutoNetworkImageView) v.findViewById(R.id.event_image);
+            name = (TextViewFont) v.findViewById(R.id.team_name);
+            image = (de.hdodenhof.circleimageview.CircleImageView) v.findViewById(R.id.team_image);
             this.v=v;
         }
     }
 
-    public void add(Event item) {
+    public void add(Team item) {
         mDataset.add(item);
         notifyItemInserted(mDataset.size() - 1);
     }
 
-    public void add(ArrayList<Event> items) {
+    public void add(ArrayList<Team> items) {
         Integer oldCount = getItemCount();
         mDataset.addAll(items);
         notifyItemInserted(oldCount);
     }
 
 
-    public void remove(Event item) {
+    public void remove(Team item) {
         int position = mDataset.indexOf(item);
         mDataset.remove(position);
         notifyItemRemoved(position);
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public EventAdapter(Context context, ArrayList<Event> myDataset) {
+    public TeamAdapter(Context context, ArrayList<Team> myDataset) {
         this.context = context;
         mDataset = myDataset;
     }
@@ -71,7 +77,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
     public ViewHolder onCreateViewHolder(ViewGroup parent,
                                          int viewType) {
         // create a new view
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_event, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_team, parent, false);
 
         // set the view's size, margins, paddings and layout parameters
         ViewHolder vh = new ViewHolder(v);
@@ -84,18 +90,22 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
 
-        final Event event = mDataset.get(position);
+        final Team team = mDataset.get(position);
         //TODO enja error daram
-        holder.name.setText(event.name);
-        holder.image.setImageUrlWithAnim(event.getImageAddress(), VolleySingleton.getInstance(context).getImageLoader());
-        holder.v.setOnClickListener(new View.OnClickListener() {
+        holder.name.setText(team.name);
+        VolleySingleton.getInstance(context).getImageLoader().get(team.getImageAddress(), new ImageLoader.ImageListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(context, TeamActivity.class);
-                intent.putExtra("event_uid",event.uid);
-                context.startActivity(intent);
+            public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
+                holder.image.setImageBitmap(response.getBitmap());
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
             }
         });
+
+
 
     }
 

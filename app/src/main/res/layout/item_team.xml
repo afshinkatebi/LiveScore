@@ -14,6 +14,7 @@
 
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/team_image"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="8dp"
@@ -23,11 +24,13 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="8dp"
+            android:visibility="gone"
             android:src="@drawable/tikmark" />
 
     </FrameLayout>
 
     <Views.TextViewFont
+        android:id="@+id/team_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
