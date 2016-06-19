@@ -1,11 +1,13 @@
 package com.example.afshin.livescore;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -34,6 +36,7 @@ public class TeamActivity extends AppCompatActivity {
     private RequestQueue requestQueue;
     Context context;
     private RecyclerView recycleView;
+    private View jadval_pakhsh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,15 +44,25 @@ public class TeamActivity extends AppCompatActivity {
         setContentView(R.layout.activity_team);
 
         context = this;
-        int event_uid = getIntent().getIntExtra("event_uid",0);
+        final int event_uid = getIntent().getIntExtra("event_uid",0);
         recycleView = (RecyclerView)findViewById(R.id.recycleView);
+        jadval_pakhsh = findViewById(R.id.jadval_pakhsh);
+
+
+        jadval_pakhsh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,JadvalPakhshActivity.class);
+                intent.putExtra("event_uid",event_uid);
+                startActivity(intent);
+            }
+        });
 
         // load main events
         requestQueue = VolleySingleton.getInstance(context).getRequestQueue();
 
         Map<String, String> params = new HashMap();
         params.put("event_uid", event_uid+"");
-
         JSONObject parameters = new JSONObject(params);
         parameters = null;
 
