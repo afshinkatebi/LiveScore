@@ -21,18 +21,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 import Adapter.GameAdapter;
+import Adapter.PinnedGameAdapter;
 import Adapter.TeamAdapter;
 import DataModel.Game;
 import DataModel.Team;
 import Helpers.ConstantHelper;
 import Helpers.VolleySingleton;
+import Views.PinnedSectionListView;
 
 public class JadvalPakhshActivity extends AppCompatActivity {
 
     private Context context;
     private RecyclerView recycleView;
     private RequestQueue requestQueue;
-
+    private PinnedSectionListView listview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +43,7 @@ public class JadvalPakhshActivity extends AppCompatActivity {
         context = this;
         final int event_uid = getIntent().getIntExtra("event_uid",0);
         recycleView = (RecyclerView)findViewById(R.id.recycleView);
+        listview = (PinnedSectionListView)findViewById(R.id.listview);
 
         Map<String, String> params = new HashMap();
         params.put("event_uid", event_uid+"");
@@ -52,9 +55,11 @@ public class JadvalPakhshActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONArray response) {
                 ArrayList<Game> games = Game.parse(response);
-                GameAdapter adapter = new GameAdapter(context,games);
-                recycleView.setLayoutManager(new LinearLayoutManager(context));
-                recycleView.setAdapter(adapter);
+                PinnedGameAdapter pinnedGameAdapter = new PinnedGameAdapter(context,games);
+                listview.setAdapter(pinnedGameAdapter);
+//                GameAdapter adapter = new GameAdapter(context,games);
+//                recycleView.setLayoutManager(new LinearLayoutManager(context));
+//                recycleView.setAdapter(adapter);
 
             }
         }, new Response.ErrorListener() {

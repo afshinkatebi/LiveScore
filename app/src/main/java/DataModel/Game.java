@@ -12,8 +12,7 @@ import Helpers.ConstantHelper;
  * Created by Alip on 6/19/2016.
  */
 public class Game {
-    public int uid = 0 ;
-    public int event_uid = 0 ;
+    public boolean isHeader = false;
     public String team_1_name = "";
     public String team_2_name = "";
     public String team_1_image = "";
@@ -22,6 +21,15 @@ public class Game {
     public String channel_name = "";
     public String team_1_score = "" ;
     public String team_2_score = "" ;
+
+    public Game(String date) {
+        this.isHeader = true;
+        this.date = date;
+        // this is a fake game this is header
+    }
+
+    public Game() {
+    }
 
 
     public static ArrayList<Game> parse(JSONArray jsonArray){
@@ -53,6 +61,10 @@ public class Game {
     }
     public String getTeam2ImageAddress() {
         return ConstantHelper.TEAM_IMAGE_FOLDER + team_2_image;
+    }
+
+    public String getPersianDate(){
+        return date.substring(0,10);
     }
 
 }
