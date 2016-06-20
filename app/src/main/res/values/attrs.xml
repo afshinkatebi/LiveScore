@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <declare-styleable name="DrawerItem">
+        <attr name="drawer_title" format="string" />
+        <attr name="drawer_icon" format="reference" />
+        <attr name="drawer_icon_background_color" format="color" />
+    </declare-styleable>
 
     <declare-styleable name="TextViewFont">
         <attr name="font" format="integer" />

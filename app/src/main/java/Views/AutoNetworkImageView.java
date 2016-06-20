@@ -4,9 +4,6 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 
-/**
- * Created by afshin on 11/30/2015.
- */
 public class AutoNetworkImageView extends NetworkImageViewSetImageManual {
     public AutoNetworkImageView(Context context) {
         super(context);

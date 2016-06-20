@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.afshin.livescore.R;
-import com.example.afshin.livescore.TeamActivity;
+import com.example.afshin.livescore.TeamsActivity;
 
 import java.util.ArrayList;
 import DataModel.Event;
@@ -91,7 +91,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         holder.v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context, TeamActivity.class);
+                Intent intent=new Intent(context, TeamsActivity.class);
                 intent.putExtra("event_uid",event.uid);
                 context.startActivity(intent);
             }

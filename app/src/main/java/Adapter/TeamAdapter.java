@@ -2,7 +2,6 @@ package Adapter;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,15 +10,11 @@ import android.view.ViewGroup;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.example.afshin.livescore.R;
-import com.example.afshin.livescore.TeamActivity;
 
 import java.util.ArrayList;
 
-import DataModel.Event;
 import DataModel.Team;
 import Helpers.VolleySingleton;
-import Views.AutoNetworkImageView;
-import Views.CircleImageView;
 import Views.TextViewFont;
 
 

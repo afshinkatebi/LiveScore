@@ -6,4 +6,7 @@
     <color name="colorPrimaryDarktoolbar">#7c1c2127</color>
     <color name="colorAccent">#FF4081</color>
     <color name="backgroundlist">#ecf3fb</color>
+
+    <color name="ripple_Color">#bcbcbc</color>
+
 </resources>

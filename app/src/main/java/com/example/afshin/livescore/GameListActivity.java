@@ -1,11 +1,16 @@
 package com.example.afshin.livescore;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,25 +25,31 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import Adapter.GameAdapter;
 import Adapter.PinnedGameAdapter;
-import Adapter.TeamAdapter;
 import DataModel.Game;
-import DataModel.Team;
 import Helpers.ConstantHelper;
 import Helpers.VolleySingleton;
 import Views.PinnedSectionListView;
 
-public class JadvalPakhshActivity extends AppCompatActivity {
+public class GameListActivity extends AppCompatActivity {
 
     private Context context;
     private RecyclerView recycleView;
     private RequestQueue requestQueue;
     private PinnedSectionListView listview;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_jadval_pakhsh);
+        setContentView(R.layout.activity_game_list);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
+        }
 
         context = this;
         final int event_uid = getIntent().getIntExtra("event_uid",0);
@@ -68,5 +79,8 @@ public class JadvalPakhshActivity extends AppCompatActivity {
 
             }
         }));
+
+
     }
+
 }
