@@ -2,6 +2,7 @@ package com.ir.irdevelopers.Tamashachi;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,6 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.wooplr.spotlight.SpotlightView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,11 +36,10 @@ import java.util.ArrayList;
 import Adapter.EventAdapter;
 import DataModel.Event;
 import Helpers.ConstantHelper;
+import Helpers.IntroCreator;
 import Helpers.VolleySingleton;
 import Views.SliderLayoutRec;
-import co.mobiwise.materialintro.shape.Focus;
-import co.mobiwise.materialintro.shape.FocusGravity;
-import co.mobiwise.materialintro.view.MaterialIntroView;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -65,11 +66,11 @@ public class MainActivity extends AppCompatActivity
         }
 
 
+        View view = findViewById(R.id.help);
+        IntroCreator.showIntro(this,view,"MainHelp","انتخاب رویداد","رویداد مورد علاقتون \n راانتخاب کنید");
+
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         header = navigationView.getHeaderView(0);
-
-
-
 
 
         // check google play services is exist
@@ -80,55 +81,21 @@ public class MainActivity extends AppCompatActivity
             startService(intent);
         }
 
-
-//        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-
-
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-////        setSupportActionBar(toolbar);
-//
-//
-//
-//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-//                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-//        drawer.setDrawerListener(toggle);
-//        toggle.syncState();
-//        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-//        navigationView.setNavigationItemSelectedListener(this);
-
-
-
-        recycleView = (RecyclerView)findViewById(R.id.recycleView);
+        recycleView = (RecyclerView) findViewById(R.id.recycleView);
         sliderLayout = (SliderLayoutRec) findViewById(R.id.slider);
 
         recycleView.setNestedScrollingEnabled(false);
-
-
-        new MaterialIntroView.Builder(this)
-                .enableDotAnimation(true)
-                .enableIcon(false)
-                .setFocusGravity(FocusGravity.CENTER)
-                .setFocusType(Focus.MINIMUM)
-                .setDelayMillis(500)
-                .enableFadeAnimation(true)
-                .performClick(true)
-                .setInfoText("بیجیک کلیک کن")
-                .setTarget(recycleView)
-                .setUsageId("_i1") //THIS SHOULD BE UNIQUE ID
-                .show();
 
         // load slider
         requestQueue = VolleySingleton.getInstance(context).getRequestQueue();
         requestQueue.add(new JsonArrayRequest(Request.Method.POST, ConstantHelper.SLIDER, "{}", new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                for (int i = 0 ; i<response.length();i++){
+                for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject jsonObject = (JSONObject) response.get(i);
                         DefaultSliderView defaultSliderView = new DefaultSliderView(context);
-                        defaultSliderView.image(ConstantHelper.SLIDE_IMAGE_FOLDER+jsonObject.getString("image"));
+                        defaultSliderView.image(ConstantHelper.SLIDE_IMAGE_FOLDER + jsonObject.getString("image"));
                         sliderLayout.addSlider(defaultSliderView);
 
                     } catch (JSONException e) {
@@ -149,8 +116,8 @@ public class MainActivity extends AppCompatActivity
         requestQueue.add(new JsonArrayRequest(Request.Method.POST, ConstantHelper.FUNCTION, "{}", new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                ArrayList <Event> events = Event.parse(response);
-                EventAdapter adapter = new EventAdapter(context,events);
+                ArrayList<Event> events = Event.parse(response);
+                EventAdapter adapter = new EventAdapter(context, events);
                 recycleView.setLayoutManager(new LinearLayoutManager(context));
                 recycleView.setAdapter(adapter);
 
@@ -161,6 +128,7 @@ public class MainActivity extends AppCompatActivity
 
             }
         }));
+
     }
 
     @Override
@@ -187,7 +155,6 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(Gravity.RIGHT);
     }
-
 
 
     @Override
@@ -251,14 +218,16 @@ public class MainActivity extends AppCompatActivity
     public void ShareOnClick(View view) {
         Intent sharingIntent = new Intent(Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT,"شما به اپلیکیشن تماشاچی دعوت شده اید." + "\n\n" + "دانلود اپلیکیشن برای اندروید" + "\n" + "http://epasazh.com/android/epasazh.apk");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "شما به اپلیکیشن تماشاچی دعوت شده اید." + "\n\n" + "دانلود اپلیکیشن برای اندروید" + "\n" + "http://epasazh.com/android/epasazh.apk");
         startActivity(Intent.createChooser(sharingIntent, "Share using"));
     }
 
     public void ShareOnClickNav(View view) {
         Intent sharingIntent = new Intent(Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT,"شما به اپلیکیشن تماشاچی دعوت شده اید." + "\n\n" + "دانلود اپلیکیشن برای اندروید" + "\n" + "http://epasazh.com/android/epasazh.apk");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "شما به اپلیکیشن تماشاچی دعوت شده اید." + "\n\n" + "دانلود اپلیکیشن برای اندروید" + "\n" + "http://epasazh.com/android/epasazh.apk");
         startActivity(Intent.createChooser(sharingIntent, "Share using"));
     }
+
+
 }
