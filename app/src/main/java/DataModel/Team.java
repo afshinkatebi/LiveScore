@@ -15,6 +15,9 @@ public class Team {
     public int uid = 0 ;
     public String name = "";
     public String image = "";
+    public boolean isSelected = false;
+    public boolean isSelected_old=false;
+    public boolean isClickable=true;
 
     public static ArrayList<Team> parse(JSONArray jsonArray){
         ArrayList<Team> teams = new ArrayList<>();
@@ -25,6 +28,7 @@ public class Team {
                 team.uid = jsonObject.getInt("uid");
                 team.name = jsonObject.getString("name");
                 team.image = jsonObject.getString("image");
+                team.isSelected = jsonObject.getInt("is_selected") == 1;
                 teams.add(team);
 
             } catch (JSONException e) {

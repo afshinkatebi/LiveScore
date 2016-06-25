@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "57355380132",
+    "project_id": "tamashachi-3f39b"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:57355380132:android:02f582a04cd7d775",
+        "android_client_info": {
+          "package_name": "com.ir.irdevelopers.Tamashachi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBD9CmE_HyQm_g-klmFSdXfiUA54i3DoFg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.afshin.livescore.TeamsActivity">
+    tools:context="com.ir.irdevelopers.Tamashachi.TeamsActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
@@ -35,10 +35,12 @@
 
 
                 <Views.AutoNetworkImageView
+                    android:id="@+id/header"
+                    android:scaleType="fitXY"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="?actionBarSize"
-                    android:background="@drawable/aa" />
+                    android:background="@drawable/background2" />
 
 
             </LinearLayout>
@@ -99,6 +101,7 @@
                     android:src="@drawable/arrow_right" />
 
                 <Views.TextViewFont
+                    android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="4dp"
@@ -123,25 +126,51 @@
     </android.support.design.widget.AppBarLayout>
 
 
-
-    <android.support.v4.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:orientation="vertical"
         android:background="@drawable/background2"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <Views.TextViewFont
+                android:id="@+id/select_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#7282ff"
+                android:textSize="16sp"
+                android:layout_marginRight="8dp"
+                android:layout_alignParentRight="true"
+                android:text="انتخاب همه"/>
+
+            <Views.TextViewFont
+                android:id="@+id/deselect_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:textColor="#7282ff"
+                android:textSize="16sp"
+                android:layout_alignParentLeft="true"
+                android:text="حذف همه"/>
+        </RelativeLayout>
+
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycleView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:paddingBottom="16dp"
+            android:layout_height="match_parent"
+
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
 
 
-    </android.support.v4.widget.NestedScrollView>
+
 
 
 </android.support.design.widget.CoordinatorLayout>

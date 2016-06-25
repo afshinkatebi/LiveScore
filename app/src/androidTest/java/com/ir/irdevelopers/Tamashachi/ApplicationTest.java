@@ -1,4 +1,4 @@
-package com.example.afshin.livescore;
+package com.ir.irdevelopers.Tamashachi;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

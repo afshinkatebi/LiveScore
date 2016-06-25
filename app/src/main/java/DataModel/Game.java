@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import Helpers.ConstantHelper;
+import Helpers.PersianCalendar;
 
 /**
  * Created by Alip on 6/19/2016.
@@ -63,8 +64,28 @@ public class Game {
         return ConstantHelper.TEAM_IMAGE_FOLDER + team_2_image;
     }
 
-    public String getPersianDate(){
+    public String getPersianDate2(){
         return date.substring(0,10);
+    }
+
+    public String getPersianDate() {
+        String res="";
+        try {
+            int year = Integer.parseInt(date.substring(0, 4));
+            int month = Integer.parseInt(date.substring(5, 7));
+            int day = Integer.parseInt(date.substring(8, 10));
+            PersianCalendar persianCalendar = new PersianCalendar();
+            persianCalendar.setGregorianDate(year,month,day);
+//            res =  persianCalendar.getIranianDate();
+
+            res = persianCalendar.getPersianWeekDayStr()+" "+persianCalendar.irDay+" "+persianCalendar.getPersianMonthName();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return res;
+
+
     }
 
 }

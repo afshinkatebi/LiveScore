@@ -7,8 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.example.afshin.livescore.R;
-import com.example.afshin.livescore.TeamsActivity;
+import com.ir.irdevelopers.Tamashachi.R;
+import com.ir.irdevelopers.Tamashachi.TeamsActivity;
 
 import java.util.ArrayList;
 import DataModel.Event;
@@ -92,7 +92,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(context, TeamsActivity.class);
-                intent.putExtra("event_uid",event.uid);
+                intent.putExtra("event",event);
                 context.startActivity(intent);
             }
         });

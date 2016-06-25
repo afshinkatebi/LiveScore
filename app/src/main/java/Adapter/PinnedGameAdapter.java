@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
-import com.example.afshin.livescore.R;
+import com.ir.irdevelopers.Tamashachi.R;
 
 import java.util.ArrayList;
 

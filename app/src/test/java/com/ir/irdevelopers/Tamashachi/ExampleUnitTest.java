@@ -1,4 +1,4 @@
-package com.example.afshin.livescore;
+package com.ir.irdevelopers.Tamashachi;
 
 import org.junit.Test;
 

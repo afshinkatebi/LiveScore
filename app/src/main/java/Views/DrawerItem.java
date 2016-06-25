@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.afshin.livescore.R;
+import com.ir.irdevelopers.Tamashachi.R;
 
 
 /**

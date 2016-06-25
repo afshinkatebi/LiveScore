@@ -1,10 +1,9 @@
-package com.example.afshin.livescore;
+package com.ir.irdevelopers.Tamashachi;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
@@ -12,9 +11,7 @@ import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
@@ -25,8 +22,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,6 +46,7 @@ public class MainActivity extends AppCompatActivity
     private SliderLayoutRec sliderLayout;
     private View header;
     NavigationView navigationView;
+    private boolean googlePlayOk;
 
 
     @Override
@@ -66,6 +64,17 @@ public class MainActivity extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         header = navigationView.getHeaderView(0);
+
+
+
+        // check google play services is exist
+        int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(context);
+        if (status == 0) {
+            googlePlayOk = true;
+            Intent intent = new Intent(context, RegistrationIntentService.class);
+            startService(intent);
+        }
+
 
 //        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
@@ -88,6 +97,9 @@ public class MainActivity extends AppCompatActivity
 
         recycleView = (RecyclerView)findViewById(R.id.recycleView);
         sliderLayout = (SliderLayoutRec) findViewById(R.id.slider);
+
+        recycleView.setNestedScrollingEnabled(false);
+
         // load slider
         requestQueue = VolleySingleton.getInstance(context).getRequestQueue();
         requestQueue.add(new JsonArrayRequest(Request.Method.POST, ConstantHelper.SLIDER, "{}", new Response.Listener<JSONArray>() {

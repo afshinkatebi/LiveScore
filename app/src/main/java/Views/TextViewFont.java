@@ -12,7 +12,7 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-import com.example.afshin.livescore.R;
+import com.ir.irdevelopers.Tamashachi.R;
 
 import Helpers.TypeFaceHelper;
 

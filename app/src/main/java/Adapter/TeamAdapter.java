@@ -7,14 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
-import com.example.afshin.livescore.R;
+import com.ir.irdevelopers.Tamashachi.R;
 
 import java.util.ArrayList;
 
 import DataModel.Team;
 import Helpers.VolleySingleton;
+import Interface.TeamOnClickListener;
 import Views.TextViewFont;
 
 
@@ -23,13 +25,81 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder> {
 
 
     private Context context;
+    private RequestQueue requestQueue;
+    private TeamOnClickListener onItemClickListener;
 
+    public void setOnItemClickListener(TeamOnClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    public void subscribe(Team team) {
+        for (int i = 0; i < mDataset.size(); i++) {
+            if (mDataset.get(i).uid == team.uid){
+                mDataset.get(i).isSelected = true;
+                notifyItemChanged(i);
+                break;
+            }
+
+
+        }
+    }
+
+    public void unsubscribe(Team team) {
+        for (int i = 0; i < mDataset.size(); i++) {
+            if (mDataset.get(i).uid == team.uid){
+                mDataset.get(i).isSelected = false;
+                notifyItemChanged(i);
+                break;
+            }
+
+        }
+    }
+
+    public void subscribeAll() {
+        for (int i = 0; i < mDataset.size(); i++) {
+            mDataset.get(i).isSelected_old = mDataset.get(i).isSelected;
+            mDataset.get(i).isSelected = true;
+        }
+        notifyDataSetChanged();
+    }
+
+    public void cancel_Subscribe_unSubscribe_All() {
+        for (int i = 0; i < mDataset.size(); i++) {
+            mDataset.get(i).isSelected = mDataset.get(i).isSelected_old;
+        }
+        notifyDataSetChanged();
+    }
+
+    public void unsubscribeAll() {
+        for (int i = 0; i < mDataset.size(); i++) {
+            mDataset.get(i).isSelected_old = mDataset.get(i).isSelected;
+            mDataset.get(i).isSelected = false;
+        }
+        notifyDataSetChanged();
+    }
+
+    public void disableClickForTeam(Team team) {
+        for (Team item : mDataset) {
+            if (item.uid == team.uid)
+                item.isClickable = false;
+            break;
+        }
+    }
+
+    public void enableClickForTeam(Team team) {
+        for (Team item : mDataset) {
+            if (item.uid == team.uid)
+                item.isClickable = true;
+            break;
+        }
+    }
 
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
     public class ViewHolder extends RecyclerView.ViewHolder {
+        private final View checkmark;
         // each data item is just a string in this case
         public de.hdodenhof.circleimageview.CircleImageView image;
         public TextViewFont name;
@@ -39,7 +109,8 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder> {
             super(v);
             name = (TextViewFont) v.findViewById(R.id.team_name);
             image = (de.hdodenhof.circleimageview.CircleImageView) v.findViewById(R.id.team_image);
-            this.v=v;
+            checkmark = v.findViewById(R.id.checkmark);
+            this.v = v;
         }
     }
 
@@ -88,6 +159,11 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder> {
         final Team team = mDataset.get(position);
         //TODO enja error daram
         holder.name.setText(team.name);
+        if (team.isSelected)
+            holder.checkmark.setVisibility(View.VISIBLE);
+        else
+            holder.checkmark.setVisibility(View.GONE);
+
         VolleySingleton.getInstance(context).getImageLoader().get(team.getImageAddress(), new ImageLoader.ImageListener() {
             @Override
             public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
@@ -99,9 +175,12 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder> {
 
             }
         });
-
-
-
+        holder.v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClickListener.onClick(team);
+            }
+        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)

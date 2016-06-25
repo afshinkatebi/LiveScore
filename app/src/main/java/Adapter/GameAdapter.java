@@ -3,22 +3,18 @@ package Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
-import com.example.afshin.livescore.R;
+import com.ir.irdevelopers.Tamashachi.R;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 import DataModel.Game;
-import DataModel.Team;
 import Helpers.VolleySingleton;
 import Views.TextViewFont;
 import de.hdodenhof.circleimageview.CircleImageView;

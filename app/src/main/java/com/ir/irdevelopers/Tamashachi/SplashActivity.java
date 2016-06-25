@@ -1,4 +1,4 @@
-package com.example.afshin.livescore;
+package com.ir.irdevelopers.Tamashachi;
 
 import android.content.Intent;
 import android.os.Bundle;

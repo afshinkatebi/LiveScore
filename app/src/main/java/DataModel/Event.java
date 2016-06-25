@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import Helpers.ConstantHelper;
@@ -11,7 +12,7 @@ import Helpers.ConstantHelper;
 /**
  * Created by Alip on 6/19/2016.
  */
-public class Event {
+public class Event implements Serializable {
     public int uid = 0 ;
     public String name = "";
     public String image = "";

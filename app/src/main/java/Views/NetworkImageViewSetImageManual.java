@@ -8,7 +8,7 @@ import android.view.animation.AnimationUtils;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
-import com.example.afshin.livescore.R;
+import com.ir.irdevelopers.Tamashachi.R;
 
 
 public class NetworkImageViewSetImageManual extends NetworkImageView {
