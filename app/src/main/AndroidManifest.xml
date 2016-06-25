@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.ir.irdevelopers.Tamashachi">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -16,7 +17,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="Tamashachi"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:label">
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"
             android:exported="true"

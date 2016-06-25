@@ -36,6 +36,9 @@ import DataModel.Event;
 import Helpers.ConstantHelper;
 import Helpers.VolleySingleton;
 import Views.SliderLayoutRec;
+import co.mobiwise.materialintro.shape.Focus;
+import co.mobiwise.materialintro.shape.FocusGravity;
+import co.mobiwise.materialintro.view.MaterialIntroView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -64,6 +67,8 @@ public class MainActivity extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         header = navigationView.getHeaderView(0);
+
+
 
 
 
@@ -99,6 +104,20 @@ public class MainActivity extends AppCompatActivity
         sliderLayout = (SliderLayoutRec) findViewById(R.id.slider);
 
         recycleView.setNestedScrollingEnabled(false);
+
+
+        new MaterialIntroView.Builder(this)
+                .enableDotAnimation(true)
+                .enableIcon(false)
+                .setFocusGravity(FocusGravity.CENTER)
+                .setFocusType(Focus.MINIMUM)
+                .setDelayMillis(500)
+                .enableFadeAnimation(true)
+                .performClick(true)
+                .setInfoText("بیجیک کلیک کن")
+                .setTarget(recycleView)
+                .setUsageId("_i1") //THIS SHOULD BE UNIQUE ID
+                .show();
 
         // load slider
         requestQueue = VolleySingleton.getInstance(context).getRequestQueue();
