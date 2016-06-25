@@ -6,7 +6,11 @@
     android:layout_height="match_parent"
     tools:context="com.ir.irdevelopers.Tamashachi.MainActivity">
 
-
+    <View
+        android:id="@+id/help"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center" />
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -27,8 +31,8 @@
                 android:layout_height="40dp"
                 android:layout_gravity="right"
                 android:layout_marginRight="10dp"
-                android:onClick="OnClickToggle"
                 android:background="@drawable/my_actionbar_ripple"
+                android:onClick="OnClickToggle"
                 android:padding="5dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/menu" />
@@ -40,15 +44,14 @@
                 android:src="@drawable/logoname" />
 
 
-
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="left"
-                android:background="@drawable/my_actionbar_ripple"
-                android:padding="7dp"
-                android:onClick="ShareOnClick"
                 android:layout_marginLeft="8dp"
+                android:background="@drawable/my_actionbar_ripple"
+                android:onClick="ShareOnClick"
+                android:padding="7dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/share_variant_white" />
 

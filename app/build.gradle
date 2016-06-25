@@ -1,3 +1,13 @@
+
+allprojects {
+    repositories {
+        jcenter()
+        maven {
+            url "https://jitpack.io"
+        }
+    }
+
+}
 apply plugin: 'com.android.application'
 
 android {
@@ -38,7 +48,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-analytics:8.4.0'
     compile 'com.google.android.gms:play-services-appindexing:8.4.0'
     compile 'com.google.android.gms:play-services:8.4.0'
-    compile 'com.github.iammert:MaterialIntroView:1.5.2'
+    compile 'com.github.wooplr:Spotlight:1.1'
 }
 
 apply plugin: 'com.google.gms.google-services'
