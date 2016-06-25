@@ -106,18 +106,6 @@ public class MainActivity extends AppCompatActivity
         recycleView.setNestedScrollingEnabled(false);
 
 
-        new MaterialIntroView.Builder(this)
-                .enableDotAnimation(true)
-                .enableIcon(false)
-                .setFocusGravity(FocusGravity.CENTER)
-                .setFocusType(Focus.MINIMUM)
-                .setDelayMillis(500)
-                .enableFadeAnimation(true)
-                .performClick(true)
-                .setInfoText("بیجیک کلیک کن")
-                .setTarget(recycleView)
-                .setUsageId("_i1") //THIS SHOULD BE UNIQUE ID
-                .show();
 
         // load slider
         requestQueue = VolleySingleton.getInstance(context).getRequestQueue();
