@@ -17,7 +17,6 @@
         android:label="Tamashachi"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"
             android:exported="true"
@@ -29,6 +28,7 @@
                 <category android:name="com.example.gcm" />
             </intent-filter>
         </receiver>
+
         <service
             android:name=".MyGcmListenerService"
             android:exported="false">
@@ -48,7 +48,7 @@
             android:exported="false" />
 
         <activity
-            android:name="com.ir.irdevelopers.Tamashachi.SplashActivity"
+            android:name=".SplashActivity"
             android:noHistory="true"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -58,16 +58,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ir.irdevelopers.Tamashachi.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-        <activity
-            android:name="com.ir.irdevelopers.Tamashachi.TeamsActivity"
+            android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.ir.irdevelopers.Tamashachi.GameListActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:name=".TeamsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".GameListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AboteActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SettingActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

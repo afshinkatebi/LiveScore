@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#dcdcdc"
+    android:fitsSystemWindows="true">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:contentInsetEnd="0dp"
+            app:contentInsetStart="0dp"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <RelativeLayout
+                android:id="@+id/toolbar_admin_mode"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimaryDark">
+
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    style="@style/IconToolbar"
+                    android:onClick="backOnClick"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/my_actionbar_ripple"
+                    android:src="@drawable/arrow_right" />
+
+                <Views.TextViewFont
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/imageButton"
+                    android:layout_toStartOf="@+id/imageButton"
+                    android:text="تنظیمات"
+                    android:textColor="#fff"
+                    android:textSize="18dp"
+                    app:font="1" />
+
+
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#343c48"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical"
+            android:paddingBottom="8dp">
+
+            <Views.TextViewFont
+                style="@style/DialogTitle"
+                android:layout_width="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="16dp"
+                android:text="اطلاع از زمان بخش بازی ها"
+                android:textColor="#15b498"
+                android:textSize="16dp"
+                app:font="1" />
+
+
+            <RelativeLayout style="@style/AboutRelative"
+                android:onClick="oneHorseBeforeGameOnclick">
+
+                <Views.TextViewFont
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="8dp"
+                    android:text="اطلاع 1 ساعت پیش از بازی"
+                    android:textColor="#fff"
+                    android:textSize="16dp"
+                    app:font="1" />
+
+
+                <Switch
+                    android:id="@+id/switch1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="8dp"
+                    android:checked="true"
+                    android:theme="@style/MySwitch" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout style="@style/AboutRelative"
+                android:onClick="fiveMinBeforeGameOnclick">
+
+                <Views.TextViewFont
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="8dp"
+                    android:text="اطلاع 5 دقیقه پیش از بازی"
+                    android:textColor="#fff"
+                    android:textSize="16dp"
+                    app:font="1" />
+
+
+                <Switch
+                    android:id="@+id/switch2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="8dp"
+                    android:clickable="false"
+                    android:checked="true"
+                    android:theme="@style/MySwitch" />
+
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/AboutRelative"
+                android:onClick="startGameOnClick">
+
+                <Views.TextViewFont
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_centerVertical="true"
+                    android:text="اطلاع هم زمان با شروع بازی"
+                    android:textColor="#fff"
+                    android:textSize="16dp"
+                    app:font="1" />
+
+
+                <Switch
+                    android:id="@+id/switch3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="8dp"
+                    android:checked="true"
+                    android:clickable="false"
+                    android:theme="@style/MySwitch" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

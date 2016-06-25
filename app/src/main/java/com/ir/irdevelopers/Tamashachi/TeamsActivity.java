@@ -270,4 +270,15 @@ public class TeamsActivity extends AppCompatActivity {
 //            }
 //        });
     }
+
+    public void backOnClick(View view) {
+        finish();
+    }
+
+    public void ShareOnClick(View view) {
+        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT,"شما به اپلیکیشن تماشاچی دعوت شده اید." + "\n\n" + "دانلود اپلیکیشن برای اندروید" + "\n" + "http://epasazh.com/android/epasazh.apk");
+        startActivity(Intent.createChooser(sharingIntent, "Share using"));
+    }
 }

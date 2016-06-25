@@ -96,6 +96,7 @@
                 <ImageButton
                     android:id="@+id/imageButton"
                     style="@style/IconToolbar"
+                    android:onClick="backOnClick"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="8dp"
                     android:src="@drawable/arrow_right" />
@@ -117,6 +118,7 @@
                     style="@style/IconToolbar"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="8dp"
+                    android:onClick="ShareOnClick"
                     android:src="@drawable/share_variant_white" />
 
             </RelativeLayout>
@@ -141,7 +143,9 @@
                 android:id="@+id/select_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#7282ff"
+                android:textColor="#0288d1"
+                app:font="1"
+                android:padding="3dp"
                 android:textSize="16sp"
                 android:layout_marginRight="8dp"
                 android:layout_alignParentRight="true"
@@ -152,7 +156,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:textColor="#7282ff"
+                app:font="1"
+                android:padding="3dp"
+                android:textColor="#0288d1"
                 android:textSize="16sp"
                 android:layout_alignParentLeft="true"
                 android:text="حذف همه"/>
