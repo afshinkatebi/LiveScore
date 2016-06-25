@@ -37,18 +37,15 @@ public class MyGcmListenerService extends GcmListenerService {
         String body = data.getString("body");
         String title = data.getString("title");
         String icon = data.getString("icon");
-        String shop_uid = data.getString("shop_uid");
 
-        createNotification(body,title,icon,shop_uid);
+        createNotification(body,title,icon);
     }
 
     // Creates notification based on title and body received
-    private void createNotification(final String title, final String body, String icon,String shop_uid) {
+    private void createNotification(final String title, final String body, String icon) {
         context = getBaseContext();
 
         notificationIntent = new Intent(context, MainActivity.class);
-        notificationIntent.putExtra("shop_uid",Integer.parseInt(shop_uid));
-        notificationIntent.setFlags( Intent.FLAG_ACTIVITY_NEW_TASK);
 
         PendingIntent intent = PendingIntent.getActivity(context, 0,
                 notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
