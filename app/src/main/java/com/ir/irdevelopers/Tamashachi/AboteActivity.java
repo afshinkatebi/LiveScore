@@ -1,5 +1,7 @@
 package com.ir.irdevelopers.Tamashachi;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,5 +16,16 @@ public class AboteActivity extends AppCompatActivity {
 
     public void backOnClick(View view) {
         finish();
+    }
+
+    public void WebSiteOnClick(View view) {
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse("http://irdevelopers.ir/"));
+        startActivity(i);
+    }
+
+    public void CallonClick(View view) {
+        Intent i = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + "07183458567"));
+        startActivity(i);
     }
 }

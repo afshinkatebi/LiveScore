@@ -27,13 +27,13 @@
                 android:background="@color/colorPrimaryDark">
 
                 <ImageButton
-                    android:onClick="backOnClick"
                     android:id="@+id/imageButton"
                     style="@style/IconToolbar"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="8dp"
                     android:background="@drawable/my_actionbar_ripple"
+                    android:onClick="backOnClick"
                     android:src="@drawable/arrow_right" />
 
                 <Views.TextViewFont
@@ -80,14 +80,16 @@
                 android:textSize="16dp"
                 app:font="1" />
 
-            <RelativeLayout style="@style/AboutRelative">
+            <RelativeLayout
+                style="@style/AboutRelative"
+                android:onClick="CallonClick">
 
                 <Views.TextViewFont
                     style="@style/AboutText"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_toLeftOf="@+id/imageView1"
-                    android:text="تماس با ما : 3252548-071"
+                    android:text="تماس با ما : 071-575757555"
                     app:font="1" />
 
 
@@ -99,7 +101,9 @@
             </RelativeLayout>
 
 
-            <RelativeLayout style="@style/AboutRelative">
+            <RelativeLayout
+                style="@style/AboutRelative"
+                android:clickable="false">
 
                 <Views.TextViewFont
                     style="@style/AboutText"
@@ -118,7 +122,9 @@
 
             </RelativeLayout>
 
-            <RelativeLayout style="@style/AboutRelative">
+            <RelativeLayout
+                style="@style/AboutRelative"
+                android:onClick="WebSiteOnClick">
 
                 <Views.TextViewFont
                     style="@style/AboutText"
@@ -126,7 +132,6 @@
                     android:layout_alignParentStart="true"
                     android:layout_toLeftOf="@+id/imageView3"
                     android:text="وب سایت : www.irdevelopers.ir"
-
                     app:font="1" />
 
 
@@ -174,10 +179,9 @@
 
             <Views.TextViewFont
                 style="@style/AboutText"
-                android:textSize="14dp"
                 android:layout_toLeftOf="@+id/imageView11"
                 android:text="کلیه حقوق اپلیکیشن تماشاچی متعلق به شرکت آریانا می باشد."
-                 />
+                android:textSize="14dp" />
 
             <ImageView
                 android:id="@+id/imageView11"
