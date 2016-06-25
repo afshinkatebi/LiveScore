@@ -23,25 +23,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                app:drawer_icon="@drawable/email_open_outline"
+                android:onClick="settingOnClick"
+                app:drawer_icon="@drawable/settings"
                 app:drawer_icon_background_color="#00ffffff"
-                app:drawer_title="پیام ها" />
+                app:drawer_title="تنظیمات" />
 
             <Views.DrawerItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
+                android:onClick="abateOnClick"
                 app:drawer_icon="@drawable/headset"
                 app:drawer_icon_background_color="#00ffffff"
-                app:drawer_title="ارتباط با ما" />
+                app:drawer_title="درباره ما" />
 
             <Views.DrawerItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                app:drawer_icon="@drawable/power"
+                android:onClick="ShareOnClickNav"
+                app:drawer_icon="@drawable/share_variant_white"
                 app:drawer_icon_background_color="#00ffffff"
-                app:drawer_title="خروج" />
+                app:drawer_title="دعوت دوستان" />
 
 
         </LinearLayout>
@@ -65,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_marginBottom="8dp"
-                android:text="شرکت تجارت الکترونیک آریانا"
+                android:text=" تجارت الکترونیک آریانا"
                 android:textColor="#ffffff"
                 android:textSize="16sp"
                 app:font="1" />

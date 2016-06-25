@@ -29,6 +29,7 @@
                 <ImageButton
                     android:id="@+id/imageButton"
                     style="@style/IconToolbar"
+                    android:onClick="backOnClick"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="8dp"
@@ -51,6 +52,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="8dp"
+                    android:onClick="ShareOnClick"
                     android:background="@drawable/my_actionbar_ripple"
                     android:src="@drawable/share_variant_white" />
 

@@ -45,6 +45,7 @@
                 android:layout_gravity="left"
                 android:background="@drawable/my_actionbar_ripple"
                 android:padding="7dp"
+                android:onClick="ShareOnClick"
                 android:layout_marginLeft="8dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/share_variant_white" />

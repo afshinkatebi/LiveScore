@@ -1,11 +1,13 @@
 package com.ir.irdevelopers.Tamashachi;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -80,4 +82,14 @@ public class GameListActivity extends AppCompatActivity {
 
     }
 
+    public void backOnClick(View view) {
+        finish();
+    }
+
+    public void ShareOnClick(View view) {
+        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT,"شما به اپلیکیشن تماشاچی دعوت شده اید." + "\n\n" + "دانلود اپلیکیشن برای اندروید" + "\n" + "http://epasazh.com/android/epasazh.apk");
+        startActivity(Intent.createChooser(sharingIntent, "Share using"));
+    }
 }
