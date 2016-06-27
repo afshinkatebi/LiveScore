@@ -255,14 +255,14 @@ public class MainActivity extends AppCompatActivity
     public void ShareOnClick(View view) {
         Intent sharingIntent = new Intent(Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "شما به اپلیکیشن تماشاچی دعوت شده اید." + "\n\n" + "دانلود اپلیکیشن برای اندروید" + "\n" + "http://Tamashachi.AriTec.com");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "شما به اپلیکیشن تماشاچی دعوت شده اید." + "\n\n" + "دانلود اپلیکیشن برای اندروید" + "\n" + "http://Tamashachi.AriTec.com/getapp");
         startActivity(Intent.createChooser(sharingIntent, "Share using"));
     }
 
     public void ShareOnClickNav(View view) {
         Intent sharingIntent = new Intent(Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "شما به اپلیکیشن تماشاچی دعوت شده اید." + "\n\n" + "دانلود اپلیکیشن برای اندروید" + "\n" + "http://Tamashachi.AriTec.com");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "شما به اپلیکیشن تماشاچی دعوت شده اید." + "\n\n" + "دانلود اپلیکیشن برای اندروید" + "\n" + "http://Tamashachi.AriTec.com/getapp");
         startActivity(Intent.createChooser(sharingIntent, "Share using"));
     }
 
