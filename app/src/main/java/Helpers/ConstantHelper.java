@@ -18,4 +18,7 @@ public class ConstantHelper {
     public static final String SUBSCRIBE_ALL = SERVER +  "/LiveScore/subscribe_all.php";
     public static final String UNSUBSCRIBE_ALL = SERVER +  "/LiveScore/unsubscribe_all.php";
 
+    public static final String OPTION = SERVER +  "/LiveScore/options.php";
+    public static final String GETOPTION = SERVER +  "/LiveScore/get_options.php";
+
 }
