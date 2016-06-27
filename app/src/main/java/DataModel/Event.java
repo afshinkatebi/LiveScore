@@ -26,6 +26,7 @@ public class Event implements Serializable {
                 event.uid = jsonObject.getInt("uid");
                 event.name = jsonObject.getString("name");
                 event.image = jsonObject.getString("image");
+
                 events.add(event);
 
             } catch (JSONException e) {
