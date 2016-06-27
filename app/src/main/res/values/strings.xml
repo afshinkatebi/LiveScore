@@ -97,4 +97,7 @@
     </string>
     <string name="title_activity_list_pakhsh">ListPakhshActivity</string>
     <string name="title_activity_game_list">GameListActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
