@@ -1,10 +1,11 @@
 package com.ir.irdevelopers.Tamashachi;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
@@ -17,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -25,7 +27,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.wooplr.spotlight.SpotlightView;
+import com.wooplr.spotlight.utils.SpotlightListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,7 +53,8 @@ public class MainActivity extends AppCompatActivity
     private View header;
     NavigationView navigationView;
     private boolean googlePlayOk;
-
+    public static final String PREF_KEY_FIRST_START = "com.heinrichreimersoftware.materialintro.demo.PREF_KEY_FIRST_START";
+    public static final int REQUEST_CODE_INTRO = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +68,40 @@ public class MainActivity extends AppCompatActivity
             window.setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
 
+        //slider start
 
+//        boolean firstStart = PreferenceManager.getDefaultSharedPreferences(this)
+//                .getBoolean(PREF_KEY_FIRST_START, true);
+
+//        if (firstStart) {
+//            Intent intent = new Intent(this, MaterialIntroActivity.class);
+//            PreferenceManager.getDefaultSharedPreferences(this).edit()
+//                    .putBoolean(PREF_KEY_FIRST_START, false)
+//                    .apply();
+//            startActivityForResult(intent, REQUEST_CODE_INTRO);
+//        }
+
+        Intent introIntent = new Intent(this, MaterialIntroActivity.class);
+        startActivity(introIntent);
+
+
+        //help
         View view = findViewById(R.id.help);
-        IntroCreator.showIntro(this,view,"MainHelp","انتخاب رویداد","رویداد مورد علاقتون \n راانتخاب کنید");
+        IntroCreator.showIntro(this,view,"MainHelp","انتخاب رویداد","رویدادهای ورزشی مورد علاق", new SpotlightListener() {
+            @Override
+            public void onUserClicked(String s) {
+                ImageButton imageButton = (ImageButton) findViewById(R.id.share);
+                IntroCreator.showIntro((Activity) context, imageButton, "MainHelp2", "معرفی به دوستان", "ما را به دوستان خودتان معرفی کنید.", new SpotlightListener() {
+                    @Override
+                    public void onUserClicked(String s) {
+
+                    }
+                });
+            }
+        });
+
+
+
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         header = navigationView.getHeaderView(0);

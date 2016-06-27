@@ -36,11 +36,11 @@
 
                 <Views.AutoNetworkImageView
                     android:id="@+id/header"
-                    android:scaleType="fitXY"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="?actionBarSize"
-                    android:background="@drawable/background2" />
+                    android:background="@drawable/background2"
+                    android:scaleType="fitXY" />
 
 
             </LinearLayout>
@@ -96,23 +96,23 @@
                 <ImageButton
                     android:id="@+id/imageButton"
                     style="@style/IconToolbar"
-                    android:onClick="backOnClick"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="8dp"
+                    android:onClick="backOnClick"
                     android:src="@drawable/arrow_right" />
 
                 <Views.TextViewFont
                     android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/imageButton"
+                    android:layout_toLeftOf="@+id/imageButton"
+                    android:layout_toStartOf="@+id/imageButton"
                     android:paddingBottom="4dp"
                     android:text="لیگ قهرمانان اروپا"
                     android:textColor="@android:color/white"
                     android:textSize="18dp"
-                    app:font="1"
-                    android:layout_alignBottom="@+id/imageButton"
-                    android:layout_toLeftOf="@+id/imageButton"
-                    android:layout_toStartOf="@+id/imageButton" />
+                    app:font="1" />
 
                 <ImageButton
                     style="@style/IconToolbar"
@@ -130,53 +130,61 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
+        android:layout_height="match_parent"
         android:background="@drawable/background2"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:layout_height="match_parent">
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
+
             <Views.TextViewFont
                 android:id="@+id/select_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#0288d1"
-                app:font="1"
-                android:padding="3dp"
-                android:textSize="16sp"
-                android:layout_marginRight="8dp"
                 android:layout_alignParentRight="true"
-                android:text="انتخاب همه"/>
+                android:layout_marginRight="8dp"
+                android:padding="3dp"
+                android:text="انتخاب همه"
+                android:textColor="#0288d1"
+                android:textSize="16sp"
+                app:font="1" />
 
             <Views.TextViewFont
                 android:id="@+id/deselect_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
                 android:layout_marginLeft="8dp"
-                app:font="1"
                 android:padding="3dp"
+                android:text="حذف همه"
                 android:textColor="#0288d1"
                 android:textSize="16sp"
-                android:layout_alignParentLeft="true"
-                android:text="حذف همه"/>
+                app:font="1" />
         </RelativeLayout>
 
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycleView"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content">
 
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            <View
+                android:id="@+id/help"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="26dp"
+                android:layout_gravity="center_horizontal"/>
 
-        </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycleView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:layout_gravity="center_horizontal|top">
+
+            </android.support.v7.widget.RecyclerView>
+        </FrameLayout>
     </LinearLayout>
-
-
-
 
 
 </android.support.design.widget.CoordinatorLayout>
