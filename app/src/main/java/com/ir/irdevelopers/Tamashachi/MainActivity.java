@@ -120,6 +120,8 @@ public class MainActivity extends AppCompatActivity
 
         recycleView.setNestedScrollingEnabled(false);
 
+
+
         // load slider
         requestQueue = VolleySingleton.getInstance(context).getRequestQueue();
         requestQueue.add(new JsonArrayRequest(Request.Method.POST, ConstantHelper.SLIDER, "{}", new Response.Listener<JSONArray>() {
