@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:context="com.ir.irdevelopers.Tamashachi.GameListActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -29,11 +28,11 @@
                 <ImageButton
                     android:id="@+id/imageButton"
                     style="@style/IconToolbar"
-                    android:onClick="backOnClick"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="8dp"
                     android:background="@drawable/my_actionbar_ripple"
+                    android:onClick="backOnClick"
                     android:src="@drawable/arrow_right" />
 
                 <Views.TextViewFont
@@ -52,8 +51,8 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="8dp"
-                    android:onClick="ShareOnClick"
                     android:background="@drawable/my_actionbar_ripple"
+                    android:onClick="ShareOnClick"
                     android:src="@drawable/share_variant_white" />
 
             </RelativeLayout>
