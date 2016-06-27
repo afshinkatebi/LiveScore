@@ -115,7 +115,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:layout_toLeftOf="@+id/imageView4"
-                        android:text="ایمیل : Tamashachi@aritec.ir"
+                        android:text="ایمیل : Tamashachi@AriTec.ir"
                         app:font="1" />
 
 
