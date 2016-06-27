@@ -70,19 +70,19 @@ public class MainActivity extends AppCompatActivity
 
         //slider start
 
-//        boolean firstStart = PreferenceManager.getDefaultSharedPreferences(this)
-//                .getBoolean(PREF_KEY_FIRST_START, true);
+        boolean firstStart = PreferenceManager.getDefaultSharedPreferences(this)
+                .getBoolean(PREF_KEY_FIRST_START, true);
 
-//        if (firstStart) {
-//            Intent intent = new Intent(this, MaterialIntroActivity.class);
-//            PreferenceManager.getDefaultSharedPreferences(this).edit()
-//                    .putBoolean(PREF_KEY_FIRST_START, false)
-//                    .apply();
-//            startActivityForResult(intent, REQUEST_CODE_INTRO);
-//        }
+        if (firstStart) {
+            Intent intent = new Intent(this, MaterialIntroActivity.class);
+            PreferenceManager.getDefaultSharedPreferences(this).edit()
+                    .putBoolean(PREF_KEY_FIRST_START, false)
+                    .apply();
+            startActivityForResult(intent, REQUEST_CODE_INTRO);
+        }
 
-        Intent introIntent = new Intent(this, MaterialIntroActivity.class);
-        startActivity(introIntent);
+//        Intent introIntent = new Intent(this, MaterialIntroActivity.class);
+//        startActivity(introIntent);
 
 
 
