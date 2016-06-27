@@ -61,7 +61,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.Intro" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".TeamsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -76,7 +76,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MaterialIntroActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Theme.Intro" />
     </application>
 
 </manifest>

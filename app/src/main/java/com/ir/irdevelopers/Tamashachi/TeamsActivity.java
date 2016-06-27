@@ -60,7 +60,7 @@ public class TeamsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         View view = findViewById(R.id.help);
-        IntroCreator.showIntro(this, view, "TeamHelp", "انتخاب تیم", "تیم های مورد علاقتون که دوست دارید بازیهاش ببینید از اینجا انتخاب کنید.", new SpotlightListener() {
+        IntroCreator.showIntro(this, view, "TeamHelp", "انتخاب تیم", "تیم های مورد علاقتون رو اینجا انتخاب کنید تا ما زمان پخش بازیهاش رو بهتون اطلاع بدیم.", new SpotlightListener() {
             @Override
             public void onUserClicked(String s) {
 

@@ -85,21 +85,6 @@ public class MainActivity extends AppCompatActivity
         startActivity(introIntent);
 
 
-        //help
-        View view = findViewById(R.id.help);
-        IntroCreator.showIntro(this,view,"MainHelp","انتخاب رویداد","رویدادهای ورزشی مورد علاق", new SpotlightListener() {
-            @Override
-            public void onUserClicked(String s) {
-                ImageButton imageButton = (ImageButton) findViewById(R.id.share);
-                IntroCreator.showIntro((Activity) context, imageButton, "MainHelp2", "معرفی به دوستان", "ما را به دوستان خودتان معرفی کنید.", new SpotlightListener() {
-                    @Override
-                    public void onUserClicked(String s) {
-
-                    }
-                });
-            }
-        });
-
 
 
 
@@ -164,6 +149,22 @@ public class MainActivity extends AppCompatActivity
 
             }
         }));
+
+
+        //help
+        View view = findViewById(R.id.help);
+        IntroCreator.showIntro(this,view,"MainHelp","انتخاب رویداد","اینجا میتونید رویداد ورزشی مورد علاقتون رو انتخاب کنید.", new SpotlightListener() {            @Override
+        public void onUserClicked(String s) {
+            ImageButton imageButton = (ImageButton) findViewById(R.id.share);
+            IntroCreator.showIntro((Activity) context, imageButton, "MainHelp2", "معرفی به دوستان", "ما را به دوستان خودتان معرفی کنید.", new SpotlightListener() {
+                @Override
+                public void onUserClicked(String s) {
+
+                }
+            });
+        }
+        });
+
 
     }
 

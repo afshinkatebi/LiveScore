@@ -26,11 +26,16 @@ public class MaterialIntroActivity extends IntroActivity {
 
 
         addSlide(new FragmentSlide.Builder()
-                .background(R.color.color_material_bold)
-                .backgroundDark(R.color.color_dark_material_bold)
+                .background(R.color.color_custom_fragment_1)
+                .backgroundDark(R.color.color_dark_custom_fragment_1)
                 .fragment(R.layout.fragment_slider2, R.style.AppThemeDark2)
                 .build());
 
+        addSlide(new FragmentSlide.Builder()
+                .background(R.color.color_custom_fragment_3)
+                .backgroundDark(R.color.color_dark_custom_fragment_3)
+                .fragment(R.layout.fragment_slider3, R.style.AppThemeDark2)
+                .build());
 
     }
 

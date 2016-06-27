@@ -15,14 +15,14 @@
             android:id="@+id/imageView8"
             android:layout_width="300dp"
             android:layout_height="300dp"
-            android:src="@drawable/slider1" />
+            android:src="@drawable/slider3" />
 
         <Views.TextViewFont
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/imageView8"
             android:layout_marginTop="16dp"
-            android:text="رویداد های ورزشی"
+            android:text="تماشاچی"
             android:textColor="#fff"
             android:textSize="22sp"
             app:font="1" />
@@ -35,7 +35,7 @@
             android:layout_marginRight="24dp"
             android:layout_marginLeft="24dp"
             android:layout_marginTop="16dp"
-            android:text="تا حالا شده یه رویداد مهم ورزشی که دوست دارید ببینید رو فراموش کنید؟"
+            android:text="تماشاچی تمام رویدادهای جذاب ورزشی مورد علاقتون رو به شما اطلاع میده."
             android:textColor="#fff"
             android:textSize="16sp"
             app:font="1" />

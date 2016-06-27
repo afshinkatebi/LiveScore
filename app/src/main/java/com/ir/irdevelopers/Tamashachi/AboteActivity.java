@@ -20,12 +20,18 @@ public class AboteActivity extends AppCompatActivity {
 
     public void WebSiteOnClick(View view) {
         Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse("http://irdevelopers.ir/"));
+        i.setData(Uri.parse("http://tamashachi.aritec.ir/"));
         startActivity(i);
     }
 
     public void CallonClick(View view) {
         Intent i = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + "07183458567"));
+        startActivity(i);
+    }
+
+    public void WebSitecompanyOnClick(View view) {
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse("http://www.aritec.ir/"));
         startActivity(i);
     }
 }
