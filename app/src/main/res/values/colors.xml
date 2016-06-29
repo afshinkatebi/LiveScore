@@ -31,4 +31,8 @@
     <color name="color_dark_custom_fragment_3">#df2401</color>
     <color name="finishgamebg">#24ff0000</color>
 
+    <color name="primaryPressed">#bcbcbc</color>
+    <color name="primaryFocused">#bcbcbc</color>
+    <color name="primary">#5b5b5b</color>
+
 </resources>
