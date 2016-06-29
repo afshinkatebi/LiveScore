@@ -20,6 +20,7 @@
         android:fitsSystemWindows="true">
 
     <include layout="@layout/nav_header_main"></include>
+        
     </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>

@@ -21,4 +21,6 @@ public class ConstantHelper {
     public static final String OPTION = SERVER +  "/LiveScore/options.php";
     public static final String GETOPTION = SERVER +  "/LiveScore/get_options.php";
 
+    public static final String NEWS_IMAGE_FOLDER = SERVER + "/LiveScore/images/news/";
+    public static final String NEWS =  SERVER + "/LiveScore/news.php";
 }

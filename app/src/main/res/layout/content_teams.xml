@@ -55,13 +55,14 @@
                 android:minHeight="45dp"
                 app:contentInsetEnd="0dp"
                 app:contentInsetStart="0dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
                 app:layout_scrollFlags="enterAlwaysCollapsed">
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_height="match_parent"
+
                     android:background="@color/colorPrimaryDark">
 
                     <FrameLayout
@@ -71,17 +72,33 @@
                         android:background="?selectableItemBackground"
                         android:clickable="true">
 
-                        <Views.TextViewFont
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:drawablePadding="8dp"
-                            android:drawableRight="@drawable/apps"
-                            android:padding="16dp"
-                            android:text="جدول پخش بازی ها"
-                            android:textColor="@android:color/white"
-                            android:textSize="16dp"
-                            app:font="1" />
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:layout_margin="12dp">
+
+                            <Views.TextViewFont
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:drawablePadding="8dp"
+                                android:text="جدول پخش بازی ها"
+                                android:textColor="@android:color/white"
+                                android:textSize="16dp"
+                                app:font="1" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/newspaper"
+                                android:layout_marginLeft="8dp"/>
+
+
+
+                        </LinearLayout>
+
                     </FrameLayout>
                 </FrameLayout>
             </android.support.v7.widget.Toolbar>

@@ -7,9 +7,10 @@
     android:background="#fff"
     app:layout_behavior="Views.FixedScrollingViewBehavior">
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <android.support.v7.widget.CardView
             android:id="@+id/cardview"
@@ -49,17 +50,34 @@
                     android:background="@drawable/my_actionbar_ripple"
                     android:clickable="true">
 
-                    <Views.TextViewFont
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:drawablePadding="8dp"
-                        android:drawableRight="@drawable/newspaper"
-                        android:padding="12dp"
-                        android:text="آخرین خبرها"
-                        android:textColor="@android:color/white"
-                        android:textSize="16dp"
-                        app:font="1" />
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:layout_margin="12dp">
+
+                        <Views.TextViewFont
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:drawablePadding="8dp"
+                            android:text="آخرین خبرها"
+                            android:textColor="@android:color/white"
+                            android:textSize="16dp"
+                            app:font="1" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/newspaper"
+                            android:layout_marginLeft="8dp"/>
+
+
+
+                    </LinearLayout>
+
+
 
                 </FrameLayout>
             </FrameLayout>
@@ -68,11 +86,12 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycleView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="#fff"
             android:layout_below="@+id/news">
 
         </android.support.v7.widget.RecyclerView>
 
-    </RelativeLayout>
+    </LinearLayout>
+
 </android.support.v4.widget.NestedScrollView>

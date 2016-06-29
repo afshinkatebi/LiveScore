@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+
 
     <LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="2dp"
@@ -25,7 +24,7 @@
                 android:scaleType="fitXY" />
 
             <Views.TextViewFont
-                android:id="@+id/titelnews"
+                android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|bottom"
@@ -43,6 +42,11 @@
                 app:font="1" />
         </FrameLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
         <Views.TextViewFont
             android:id="@+id/description"
             android:layout_width="match_parent"
@@ -57,6 +61,9 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18dp" />
 
+
+
+
+    </ScrollView>
     </LinearLayout>
 
-</ScrollView>
