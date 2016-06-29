@@ -302,4 +302,9 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    public void OnclickNews(View view) {
+        Intent intent = new Intent(context, NewsActivity.class);
+        startActivity(intent);
+
+    }
 }

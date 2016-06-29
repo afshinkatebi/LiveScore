@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="2dp"
+    android:background="?selectableItemBackground"
+    android:clickable="true"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <Views.NetworkImageViewSetImageManual
+        android:id="@+id/image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/slider2"
+        android:scaleType="centerCrop" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/image">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Views.TextViewFont
+                android:id="@+id/titelnews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="right"
+                android:lines="2"
+                android:text="سشتایاش اشسیاش س  یش شسیشس اتاسشی شساا یشسااشستیاشسی شنتستشسای شااتشسیا "
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18dp"
+                app:font="1" />
+
+
+            <Views.TextViewFont
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:ellipsize="end"
+                android:gravity="right"
+                android:lines="4"
+                android:text="تینشسنتینشتنشسیتشس  نسشتنیتش ستتیمنشستیمنتمشس   شسیتشستی سینت شستیت شسنمشس یشتسیتشس میشتسشنت نسشتسشتی شنستیت"
+                android:textSize="18dp" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -12,9 +12,9 @@
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="2dp"
-        android:gravity="right"
         android:layout_marginRight="8dp"
+        android:gravity="right"
+        android:padding="2dp"
         android:text="asdasd"
         android:textColor="@android:color/white"
         android:textSize="16dp" />
@@ -27,14 +27,16 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/finishbg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-           android:paddingTop="8dp"
             android:paddingBottom="8dp"
+            android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:paddingLeft="16dp">
+            android:paddingTop="8dp">
 
             <LinearLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -45,9 +47,9 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="8dp"
-                    app:civ_border_width="2dp"
+                    android:src="@drawable/background2"
                     app:civ_border_color="#fff"
-                    android:src="@drawable/background2" />
+                    app:civ_border_width="2dp" />
 
                 <Views.TextViewFont
                     android:id="@+id/team_1_name"
@@ -55,17 +57,21 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="8dp"
-                    app:font="1"
-                    android:textSize="16dp"
                     android:text="پرتقال"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16dp"
+                    app:font="1" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/linearLayout2"
+                android:layout_toLeftOf="@+id/linearLayout"
+                android:layout_toRightOf="@+id/linearLayout2"
+                android:layout_toStartOf="@+id/linearLayout"
                 android:orientation="vertical">
 
                 <Views.TextViewFont
@@ -93,6 +99,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -103,9 +110,9 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="8dp"
-                    app:civ_border_width="2dp"
+                    android:src="@drawable/background2"
                     app:civ_border_color="#fff"
-                    android:src="@drawable/background2" />
+                    app:civ_border_width="2dp" />
 
                 <Views.TextViewFont
                     android:id="@+id/team_2_name"
@@ -114,9 +121,9 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="8dp"
                     android:text="سوئیس"
-                    app:font="1"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="16dp"
-                    android:textColor="@color/colorPrimaryDark" />
+                    app:font="1" />
 
             </LinearLayout>
         </RelativeLayout>
