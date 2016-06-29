@@ -55,7 +55,7 @@
                         android:layout_gravity="center"
                         android:drawablePadding="8dp"
                         android:drawableRight="@drawable/newspaper"
-                        android:padding="16dp"
+                        android:padding="12dp"
                         android:text="آخرین خبرها"
                         android:textColor="@android:color/white"
                         android:textSize="16dp"
