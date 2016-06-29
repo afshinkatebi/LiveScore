@@ -7,7 +7,6 @@
     android:background="@color/colorPrimary"
     android:orientation="vertical">
 
-
     <Views.TextViewFont
         android:id="@+id/header"
         android:layout_width="match_parent"
@@ -26,107 +25,120 @@
         android:background="#ecf3fb"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/finishbg"
+
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="8dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:paddingTop="8dp">
+            android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:orientation="vertical">
+            <View
+                android:id="@+id/finishbg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/finishgamebg" />
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/team_1_image"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="8dp"
-                    android:src="@drawable/background2"
-                    app:civ_border_color="#fff"
-                    app:civ_border_width="2dp" />
-
-                <Views.TextViewFont
-                    android:id="@+id/team_1_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="8dp"
-                    android:text="پرتقال"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="16dp"
-                    app:font="1" />
-
-            </LinearLayout>
-
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@+id/linearLayout2"
-                android:layout_toLeftOf="@+id/linearLayout"
-                android:layout_toRightOf="@+id/linearLayout2"
-                android:layout_toStartOf="@+id/linearLayout"
-                android:orientation="vertical">
+                android:paddingBottom="8dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="8dp">
 
-                <Views.TextViewFont
-                    android:id="@+id/date"
+                <LinearLayout
+                    android:id="@+id/linearLayout2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="8dp"
-                    android:text="17:30"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="24dp"
-                    app:font="1" />
+                    android:layout_alignParentLeft="true"
+                    android:orientation="vertical">
 
-                <Views.TextViewFont
-                    android:id="@+id/resault"
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/team_1_image"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="8dp"
+                        android:src="@drawable/background2"
+                        app:civ_border_color="#fff"
+                        app:civ_border_width="2dp" />
+
+                    <Views.TextViewFont
+                        android:id="@+id/team_1_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="8dp"
+                        android:text="پرتقال"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="16dp"
+                        app:font="1" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/linearLayout2"
+                    android:layout_toLeftOf="@+id/linearLayout"
+                    android:layout_toRightOf="@+id/linearLayout2"
+                    android:layout_toStartOf="@+id/linearLayout"
+                    android:orientation="vertical">
+
+                    <Views.TextViewFont
+                        android:id="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="8dp"
+                        android:text="17:30"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="24dp"
+                        app:font="1" />
+
+                    <Views.TextViewFont
+                        android:id="@+id/resault"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="8dp"
+                        android:text="در حال پخش"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="16dp"
+                        app:font="1" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="8dp"
-                    android:text="در حال پخش"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="16dp"
-                    app:font="1" />
+                    android:layout_alignParentRight="true"
+                    android:orientation="vertical">
 
-            </LinearLayout>
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/team_2_image"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="8dp"
+                        android:src="@drawable/background2"
+                        app:civ_border_color="#fff"
+                        app:civ_border_width="2dp" />
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:orientation="vertical">
+                    <Views.TextViewFont
+                        android:id="@+id/team_2_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="8dp"
+                        android:text="سوئیس"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="16dp"
+                        app:font="1" />
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/team_2_image"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="8dp"
-                    android:src="@drawable/background2"
-                    app:civ_border_color="#fff"
-                    app:civ_border_width="2dp" />
+                </LinearLayout>
 
-                <Views.TextViewFont
-                    android:id="@+id/team_2_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="8dp"
-                    android:text="سوئیس"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="16dp"
-                    app:font="1" />
+            </RelativeLayout>
 
-            </LinearLayout>
-        </RelativeLayout>
+        </FrameLayout>
 
         <View
             android:layout_width="match_parent"
