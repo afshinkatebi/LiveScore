@@ -19,6 +19,7 @@
         android:label="Tamashachi"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:largeHeap="true"
         tools:replace="android:label">
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"
