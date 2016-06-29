@@ -51,33 +51,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
                 android:layout_gravity="bottom"
-                android:background="@color/colorPrimaryDark"
+                android:background="#fff"
                 android:minHeight="45dp"
                 app:contentInsetEnd="0dp"
                 app:contentInsetStart="0dp"
                 app:layout_scrollFlags="enterAlwaysCollapsed">
 
-
                 <FrameLayout
-                    android:id="@+id/jadval_pakhsh"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?selectableItemBackground"
-                    android:clickable="true">
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/colorPrimaryDark">
 
-                    <Views.TextViewFont
-                        android:layout_width="wrap_content"
+                    <FrameLayout
+                        android:id="@+id/jadval_pakhsh"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:drawablePadding="8dp"
-                        android:drawableRight="@drawable/apps"
-                        android:padding="16dp"
-                        android:text="جدول پخش بازی ها"
-                        android:textColor="@android:color/white"
-                        android:textSize="16dp"
-                        app:font="1" />
-                </FrameLayout>
+                        android:background="?selectableItemBackground"
+                        android:clickable="true">
 
+                        <Views.TextViewFont
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:drawablePadding="8dp"
+                            android:drawableRight="@drawable/apps"
+                            android:padding="16dp"
+                            android:text="جدول پخش بازی ها"
+                            android:textColor="@android:color/white"
+                            android:textSize="16dp"
+                            app:font="1" />
+                    </FrameLayout>
+                </FrameLayout>
             </android.support.v7.widget.Toolbar>
 
 
@@ -172,15 +178,15 @@
                 android:id="@+id/help"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="26dp"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="26dp" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycleView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                android:layout_gravity="center_horizontal|top">
+                android:layout_gravity="center_horizontal|top"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             </android.support.v7.widget.RecyclerView>
         </FrameLayout>
