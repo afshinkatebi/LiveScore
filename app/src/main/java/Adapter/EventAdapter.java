@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+
 import com.ir.irdevelopers.Tamashachi.R;
 import com.ir.irdevelopers.Tamashachi.TeamsActivity;
 
@@ -91,6 +93,11 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         holder.v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (event.soon) {
+                    holder.name.startAnimation(AnimationUtils.loadAnimation(context,R.anim.shake));
+                    return;
+
+                }
                 Intent intent=new Intent(context, TeamsActivity.class);
                 intent.putExtra("event",event);
                 context.startActivity(intent);

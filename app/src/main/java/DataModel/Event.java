@@ -16,6 +16,7 @@ public class Event implements Serializable {
     public int uid = 0 ;
     public String name = "";
     public String image = "";
+    public boolean soon = false;
 
     public static ArrayList<Event> parse(JSONArray jsonArray){
         ArrayList<Event> events = new ArrayList<>();
@@ -26,6 +27,7 @@ public class Event implements Serializable {
                 event.uid = jsonObject.getInt("uid");
                 event.name = jsonObject.getString("name");
                 event.image = jsonObject.getString("image");
+                event.soon = jsonObject.getInt("soon") == 1;
 
                 events.add(event);
 
