@@ -33,6 +33,7 @@ package Helpers;
 
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -72,12 +73,13 @@ public class UserManager {
         parameters = null;
 
 
-        requestQueue.add(new JsonObjectRequest(Request.Method.GET, ConstantHelper.REGISTRATION+"?token="+token, parameters, new Response.Listener<JSONObject>() {
+        requestQueue.add(new TimeoutJsonObjectRequest(Request.Method.GET, ConstantHelper.REGISTRATION+"?token="+token, parameters, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 
                 try {
-                    Toast.makeText(context,"id recived " + response.getString("user_uid"),Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context,"id recived " + response.getString("user_uid"),Toast.LENGTH_SHORT).show();
+                    Log.d("ali",response.getString("user_uid"));
                     SharedPrefrence.write(context,"user_uid",response.getString("user_uid"));
 
                 } catch (JSONException e) {
@@ -88,7 +90,7 @@ public class UserManager {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context,"token error " + error.getMessage(),Toast.LENGTH_SHORT).show();
+                NetworkErrorHandler.handleThisError(context,error);
 
             }
         }));

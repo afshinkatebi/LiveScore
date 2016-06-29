@@ -17,7 +17,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import Helpers.ConstantHelper;
+import Helpers.NetworkErrorHandler;
 import Helpers.SharedPrefrence;
+import Helpers.TimeoutJsonObjectRequest;
 import Helpers.VolleySingleton;
 
 public class SettingActivity extends AppCompatActivity {
@@ -45,7 +47,7 @@ public class SettingActivity extends AppCompatActivity {
         requestQueue = VolleySingleton.getInstance(context).getRequestQueue();
         JSONObject parameters = null;
         user_uid = SharedPrefrence.read(context,"user_uid");
-        requestQueue.add(new JsonObjectRequest(Request.Method.GET, ConstantHelper.GETOPTION+"?user_uid="+user_uid, parameters, new Response.Listener<JSONObject>() {
+        requestQueue.add(new TimeoutJsonObjectRequest(Request.Method.GET, ConstantHelper.GETOPTION+"?user_uid="+user_uid, parameters, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 
@@ -83,22 +85,22 @@ public class SettingActivity extends AppCompatActivity {
         JSONObject parameters = null;
         user_uid = SharedPrefrence.read(context,"user_uid");
         value = switch_1_hour_befor.isChecked() ? 1 : 0;
-        requestQueue.add(new JsonObjectRequest(Request.Method.GET, ConstantHelper.OPTION+"?user_uid="+user_uid+"&option=op_1_hr_befor&value="+value, parameters, new Response.Listener<JSONObject>() {
+        requestQueue.add(new TimeoutJsonObjectRequest(Request.Method.GET, ConstantHelper.OPTION+"?user_uid="+user_uid+"&option=op_1_hr_befor&value="+value, parameters, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 
-                try {
-                    Toast.makeText(context,response.getString("result"),Toast.LENGTH_SHORT).show();
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+//                try {
+////                    Toast.makeText(context,response.getString("result"),Toast.LENGTH_SHORT).show();
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context,error.getMessage(),Toast.LENGTH_SHORT).show();
+                NetworkErrorHandler.handleThisError(context,error);
 
             }
         }));
@@ -110,22 +112,22 @@ public class SettingActivity extends AppCompatActivity {
         JSONObject parameters = null;
         user_uid = SharedPrefrence.read(context,"user_uid");
         value = switch_5_min_befor.isChecked() ? 1 : 0;
-        requestQueue.add(new JsonObjectRequest(Request.Method.GET, ConstantHelper.OPTION+"?user_uid="+user_uid+"&option=op_5_min_befor&value="+value, parameters, new Response.Listener<JSONObject>() {
+        requestQueue.add(new TimeoutJsonObjectRequest(Request.Method.GET, ConstantHelper.OPTION+"?user_uid="+user_uid+"&option=op_5_min_befor&value="+value, parameters, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 
-                try {
-                    Toast.makeText(context,response.getString("result"),Toast.LENGTH_SHORT).show();
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    Toast.makeText(context,response.getString("result"),Toast.LENGTH_SHORT).show();
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context,error.getMessage(),Toast.LENGTH_SHORT).show();
+                NetworkErrorHandler.handleThisError(context,error);
 
             }
         }));
@@ -139,22 +141,22 @@ public class SettingActivity extends AppCompatActivity {
         JSONObject parameters = null;
         user_uid = SharedPrefrence.read(context,"user_uid");
         value = switch_on_start.isChecked() ? 1 : 0;
-        requestQueue.add(new JsonObjectRequest(Request.Method.GET, ConstantHelper.OPTION+"?user_uid="+user_uid+"&option=op_on_start&value="+value, parameters, new Response.Listener<JSONObject>() {
+        requestQueue.add(new TimeoutJsonObjectRequest(Request.Method.GET, ConstantHelper.OPTION+"?user_uid="+user_uid+"&option=op_on_start&value="+value, parameters, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 
-                try {
-                    Toast.makeText(context,response.getString("result"),Toast.LENGTH_SHORT).show();
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    Toast.makeText(context,response.getString("result"),Toast.LENGTH_SHORT).show();
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context,error.getMessage(),Toast.LENGTH_SHORT).show();
+                NetworkErrorHandler.handleThisError(context,error);
 
             }
         }));

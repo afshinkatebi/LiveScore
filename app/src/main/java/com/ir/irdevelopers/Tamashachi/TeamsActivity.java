@@ -31,7 +31,10 @@ import DataModel.Event;
 import DataModel.Team;
 import Helpers.ConstantHelper;
 import Helpers.IntroCreator;
+import Helpers.NetworkErrorHandler;
 import Helpers.SharedPrefrence;
+import Helpers.TimeoutJsonArrayRequest;
+import Helpers.TimeoutJsonObjectRequest;
 import Helpers.VolleySingleton;
 import Interface.TeamOnClickListener;
 import Views.AutoNetworkImageView;
@@ -91,7 +94,7 @@ public class TeamsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, GameListActivity.class);
-                intent.putExtra("event_uid", event.uid);
+                intent.putExtra("event", event);
                 startActivity(intent);
 
 
@@ -118,7 +121,7 @@ public class TeamsActivity extends AppCompatActivity {
 
 
         final JSONObject finalParameters = parameters;
-        requestQueue.add(new JsonArrayRequest(Request.Method.GET, ConstantHelper.TEAM_OF_EVENT + "?event_uid=" + event.uid + "&user_uid=" + user_uid, parameters, new Response.Listener<JSONArray>() {
+        requestQueue.add(new TimeoutJsonArrayRequest(Request.Method.GET, ConstantHelper.TEAM_OF_EVENT + "?event_uid=" + event.uid + "&user_uid=" + user_uid, parameters, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 ArrayList<Team> teams = Team.parse(response);
@@ -133,16 +136,16 @@ public class TeamsActivity extends AppCompatActivity {
                         if (team.isSelected) {
                             //TODO UNSUBSCRIBE
                             adapter.unsubscribe(team);
-                            requestQueue.add(new JsonObjectRequest(Request.Method.GET, ConstantHelper.UNSUBSCRIBE + "?user_uid=" + user_uid + "&event_uid=" + event.uid + "&team_uid=" + team.uid, finalParameters, new Response.Listener<JSONObject>() {
+                            requestQueue.add(new TimeoutJsonObjectRequest(Request.Method.GET, ConstantHelper.UNSUBSCRIBE + "?user_uid=" + user_uid + "&event_uid=" + event.uid + "&team_uid=" + team.uid, finalParameters, new Response.Listener<JSONObject>() {
                                 @Override
                                 public void onResponse(JSONObject response) {
                                     adapter.enableClickForTeam(team);
                                     try {
                                         String result = response.getString("result");
                                         if (result.equals("interest_removed")) {
-                                            Toast.makeText(context, "interest_removed", Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(context, "interest_removed", Toast.LENGTH_SHORT).show();
                                         } else {
-                                            Toast.makeText(context, "interest_remove_failed", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(context, "حذف علاقمندی ها موفقیت آمیز نبود", Toast.LENGTH_SHORT).show();
                                             adapter.subscribe(team);
 
                                         }
@@ -155,7 +158,7 @@ public class TeamsActivity extends AppCompatActivity {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
                                     adapter.enableClickForTeam(team);
-                                    Toast.makeText(context, "interest_remove_failed", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, "حذف علاقمندی ها موفقیت آمیز نبود", Toast.LENGTH_SHORT).show();
                                     adapter.subscribe(team);
                                 }
                             }));
@@ -164,7 +167,7 @@ public class TeamsActivity extends AppCompatActivity {
 
                             //SUBSCRIBE
                             adapter.subscribe(team);
-                            requestQueue.add(new JsonObjectRequest(Request.Method.GET, ConstantHelper.SUBSCRIBE + "?user_uid=" + user_uid + "&event_uid=" + event.uid + "&team_uid=" + team.uid, finalParameters, new Response.Listener<JSONObject>() {
+                            requestQueue.add(new TimeoutJsonObjectRequest(Request.Method.GET, ConstantHelper.SUBSCRIBE + "?user_uid=" + user_uid + "&event_uid=" + event.uid + "&team_uid=" + team.uid, finalParameters, new Response.Listener<JSONObject>() {
                                 @Override
                                 public void onResponse(JSONObject response) {
                                     adapter.enableClickForTeam(team);
@@ -172,9 +175,9 @@ public class TeamsActivity extends AppCompatActivity {
                                     try {
                                         String result = response.getString("result");
                                         if (result.equals("interest_added")) {
-                                            Toast.makeText(context, "interest_added", Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(context, "interest_added", Toast.LENGTH_SHORT).show();
                                         } else {
-                                            Toast.makeText(context, "interest_added_failed", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(context, "خطا در افزودن علاقمندی", Toast.LENGTH_SHORT).show();
                                             adapter.unsubscribe(team);
                                         }
                                     } catch (JSONException e) {
@@ -186,7 +189,7 @@ public class TeamsActivity extends AppCompatActivity {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
                                     adapter.enableClickForTeam(team);
-                                    Toast.makeText(context, "interest_added_failed", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, "خطا در افزودن علاقمندی", Toast.LENGTH_SHORT).show();
                                     adapter.unsubscribe(team);
                                 }
                             }));
@@ -201,6 +204,7 @@ public class TeamsActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                NetworkErrorHandler.handleThisError(context,error);
 
             }
         }));
@@ -211,19 +215,19 @@ public class TeamsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //SUBSCRIBE
                 adapter.subscribeAll();
-                requestQueue.add(new JsonObjectRequest(Request.Method.GET, ConstantHelper.SUBSCRIBE_ALL + "?user_uid=" + user_uid + "&event_uid=" + event.uid, finalParameters, new Response.Listener<JSONObject>() {
+                requestQueue.add(new TimeoutJsonObjectRequest(Request.Method.GET, ConstantHelper.SUBSCRIBE_ALL + "?user_uid=" + user_uid + "&event_uid=" + event.uid, finalParameters, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
                             String result = response.getString("result");
                             if (result.equals("all_interests_added")) {
-                                Toast.makeText(context, "all_interest_added", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(context, "all_interest_added", Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(context, "all_interest_added_failed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "خطا در افزودن علاقمندی", Toast.LENGTH_SHORT).show();
                                 adapter.cancel_Subscribe_unSubscribe_All();
                             }
                         } catch (JSONException e) {
-                            Toast.makeText(context, "all_interest_added_failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "خطا در افزودن علاقمندی", Toast.LENGTH_SHORT).show();
                             adapter.cancel_Subscribe_unSubscribe_All();
                         }
 
@@ -231,7 +235,7 @@ public class TeamsActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(context, "all_interest_added_failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "خطا در افزودن علاقمندی", Toast.LENGTH_SHORT).show();
                         adapter.cancel_Subscribe_unSubscribe_All();
                     }
                 }));
@@ -244,19 +248,19 @@ public class TeamsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //SUBSCRIBE
                 adapter.unsubscribeAll();
-                requestQueue.add(new JsonObjectRequest(Request.Method.GET, ConstantHelper.UNSUBSCRIBE_ALL + "?user_uid=" + user_uid + "&event_uid=" + event.uid, finalParameters, new Response.Listener<JSONObject>() {
+                requestQueue.add(new TimeoutJsonObjectRequest(Request.Method.GET, ConstantHelper.UNSUBSCRIBE_ALL + "?user_uid=" + user_uid + "&event_uid=" + event.uid, finalParameters, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
                             String result = response.getString("result");
                             if (result.equals("all_interests_removed")) {
-                                Toast.makeText(context, "all_interests_removed", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(context, "all_interests_removed", Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(context, "all_interest_removed_failed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "خطا در حذف علاقمندی", Toast.LENGTH_SHORT).show();
                                 adapter.cancel_Subscribe_unSubscribe_All();
                             }
                         } catch (JSONException e) {
-                            Toast.makeText(context, "all_interest_removed_failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "خطا در حذف علاقمندی", Toast.LENGTH_SHORT).show();
                             adapter.cancel_Subscribe_unSubscribe_All();
                         }
 
@@ -264,7 +268,7 @@ public class TeamsActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(context, "all_interest_removed_failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "خطا در حذف علاقمندی", Toast.LENGTH_SHORT).show();
                         adapter.cancel_Subscribe_unSubscribe_All();
                     }
                 }));
@@ -281,6 +285,17 @@ public class TeamsActivity extends AppCompatActivity {
 //        });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (event==null){
+            Intent intent = new Intent(context, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+    }
+
     public void backOnClick(View view) {
         finish();
     }
@@ -288,7 +303,6 @@ public class TeamsActivity extends AppCompatActivity {
     public void ShareOnClick(View view) {
         Intent sharingIntent = new Intent(Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "شما به اپلیکیشن تماشاچی دعوت شده اید." + "\n\n" + "دانلود اپلیکیشن برای اندروید" + "\n" + "http://Tamashachi.AriTec.com/getapp");
-        startActivity(Intent.createChooser(sharingIntent, "Share using"));
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT,"شما به اپلیکیشن تماشاچی دعوت شده اید." + "\n"+"تماشاچی شما را از جدیدترین رویدادهای ورزشی با خبر می سازد و زمان پخش بازیهای تیم مورد علاقتان را به شما اطلاع می دهد."+"\n\n" + "دانلود اپلیکیشن برای اندروید" + "\n" + "http://Tamashachi.AriTec.com/getapp");        startActivity(Intent.createChooser(sharingIntent, "Share using"));
     }
 }

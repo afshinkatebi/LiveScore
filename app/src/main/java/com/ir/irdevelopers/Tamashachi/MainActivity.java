@@ -3,6 +3,7 @@ package com.ir.irdevelopers.Tamashachi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -24,8 +25,10 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
+import com.daimajia.slider.library.Indicators.PagerIndicator;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.wooplr.spotlight.utils.SpotlightListener;
 
@@ -39,6 +42,8 @@ import Adapter.EventAdapter;
 import DataModel.Event;
 import Helpers.ConstantHelper;
 import Helpers.IntroCreator;
+import Helpers.NetworkErrorHandler;
+import Helpers.TimeoutJsonArrayRequest;
 import Helpers.VolleySingleton;
 import Views.SliderLayoutRec;
 
@@ -55,12 +60,15 @@ public class MainActivity extends AppCompatActivity
     private boolean googlePlayOk;
     public static final String PREF_KEY_FIRST_START = "com.heinrichreimersoftware.materialintro.demo.PREF_KEY_FIRST_START";
     public static final int REQUEST_CODE_INTRO = 1;
+    private MainActivity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
+        activity = this;
         setContentView(R.layout.activity_main);
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -109,15 +117,37 @@ public class MainActivity extends AppCompatActivity
 
         // load slider
         requestQueue = VolleySingleton.getInstance(context).getRequestQueue();
-        requestQueue.add(new JsonArrayRequest(Request.Method.POST, ConstantHelper.SLIDER, "{}", new Response.Listener<JSONArray>() {
+        requestQueue.add(new TimeoutJsonArrayRequest(Request.Method.POST, ConstantHelper.SLIDER, "{}", new Response.Listener<JSONArray>() {
+
+
             @Override
             public void onResponse(JSONArray response) {
                 for (int i = 0; i < response.length(); i++) {
                     try {
-                        JSONObject jsonObject = (JSONObject) response.get(i);
-                        DefaultSliderView defaultSliderView = new DefaultSliderView(context);
+                        final JSONObject jsonObject = (JSONObject) response.get(i);
+                        TextSliderView defaultSliderView = new TextSliderView(context);
                         defaultSliderView.image(ConstantHelper.SLIDE_IMAGE_FOLDER + jsonObject.getString("image"));
+                        defaultSliderView.description(jsonObject.getString("description"));
+                        final String url = jsonObject.getString("url");
+                        defaultSliderView.setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
+                            @Override
+                            public void onSliderClick(BaseSliderView slider) {
+                                String url= null;
+                                try {
+                                    url = jsonObject.getString("url");
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                if (url!=null && url.length()>0){
+                                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                                    startActivity(browserIntent);
+                                }
+
+                            }
+                        });
                         sliderLayout.addSlider(defaultSliderView);
+                        sliderLayout.setIndicatorVisibility(PagerIndicator.IndicatorVisibility.Invisible);
+
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -128,42 +158,49 @@ public class MainActivity extends AppCompatActivity
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                NetworkErrorHandler.handleThisError(context,error);
             }
         }));
 
         // load main events
         requestQueue = VolleySingleton.getInstance(context).getRequestQueue();
-        requestQueue.add(new JsonArrayRequest(Request.Method.POST, ConstantHelper.FUNCTION, "{}", new Response.Listener<JSONArray>() {
+        requestQueue.add(new TimeoutJsonArrayRequest(Request.Method.POST, ConstantHelper.FUNCTION, "{}", new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 ArrayList<Event> events = Event.parse(response);
                 EventAdapter adapter = new EventAdapter(context, events);
                 recycleView.setLayoutManager(new LinearLayoutManager(context));
                 recycleView.setAdapter(adapter);
+                recycleView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //help
+                        View view = findViewById(R.id.help);
+                        IntroCreator.showIntro(activity,view,"MainHelp","انتخاب رویداد","اینجا میتونید رویداد ورزشی مورد علاقتون رو انتخاب کنید.", new SpotlightListener() {            @Override
+                        public void onUserClicked(String s) {
+                            ImageButton imageButton = (ImageButton) findViewById(R.id.share);
+                            IntroCreator.showIntro((Activity) context, imageButton, "MainHelp2", "معرفی به دوستان", "ما را به دوستان خودتان معرفی کنید.", new SpotlightListener() {
+                                @Override
+                                public void onUserClicked(String s) {
+
+                                }
+                            });
+                        }
+                        });
+                    }
+                },2);
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                NetworkErrorHandler.handleThisError(context,error);
 
             }
         }));
 
 
-        //help
-        View view = findViewById(R.id.help);
-        IntroCreator.showIntro(this,view,"MainHelp","انتخاب رویداد","اینجا میتونید رویداد ورزشی مورد علاقتون رو انتخاب کنید.", new SpotlightListener() {            @Override
-        public void onUserClicked(String s) {
-            ImageButton imageButton = (ImageButton) findViewById(R.id.share);
-            IntroCreator.showIntro((Activity) context, imageButton, "MainHelp2", "معرفی به دوستان", "ما را به دوستان خودتان معرفی کنید.", new SpotlightListener() {
-                @Override
-                public void onUserClicked(String s) {
 
-                }
-            });
-        }
-        });
 
 
     }
@@ -248,22 +285,20 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void abateOnClick(View view) {
-        Intent intent = new Intent(context, AboteActivity.class);
+        Intent intent = new Intent(context, AboutActivity.class);
         startActivity(intent);
     }
 
     public void ShareOnClick(View view) {
         Intent sharingIntent = new Intent(Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "شما به اپلیکیشن تماشاچی دعوت شده اید." + "\n\n" + "دانلود اپلیکیشن برای اندروید" + "\n" + "http://Tamashachi.AriTec.com/getapp");
-        startActivity(Intent.createChooser(sharingIntent, "Share using"));
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT,"شما به اپلیکیشن تماشاچی دعوت شده اید." + "\n"+"تماشاچی شما را از جدیدترین رویدادهای ورزشی با خبر می سازد و زمان پخش بازیهای تیم مورد علاقتان را به شما اطلاع می دهد."+"\n\n" + "دانلود اپلیکیشن برای اندروید" + "\n" + "http://Tamashachi.AriTec.com/getapp");        startActivity(Intent.createChooser(sharingIntent, "Share using"));
     }
 
     public void ShareOnClickNav(View view) {
         Intent sharingIntent = new Intent(Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "شما به اپلیکیشن تماشاچی دعوت شده اید." + "\n\n" + "دانلود اپلیکیشن برای اندروید" + "\n" + "http://Tamashachi.AriTec.com/getapp");
-        startActivity(Intent.createChooser(sharingIntent, "Share using"));
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT,"شما به اپلیکیشن تماشاچی دعوت شده اید." + "\n"+"تماشاچی شما را از جدیدترین رویدادهای ورزشی با خبر می سازد و زمان پخش بازیهای تیم مورد علاقتان را به شما اطلاع می دهد."+"\n\n" + "دانلود اپلیکیشن برای اندروید" + "\n" + "http://Tamashachi.AriTec.com/getapp");        startActivity(Intent.createChooser(sharingIntent, "Share using"));
     }
 
 

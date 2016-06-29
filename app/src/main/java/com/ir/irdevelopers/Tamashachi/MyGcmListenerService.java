@@ -1,5 +1,6 @@
 package com.ir.irdevelopers.Tamashachi;
 
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -55,13 +56,14 @@ public class MyGcmListenerService extends GcmListenerService {
 
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
-                .setSmallIcon(R.mipmap.ic_launcher).setContentTitle(title)
+                .setSmallIcon(R.drawable.notisamllicon).setContentTitle(title)
                 .setLargeIcon(getBitmapFromURL(".jpg"))
                 .setContentText(body)
                 .setContentIntent(intent)
                 .setSound(alarmSound);
         NotificationManager mNotificationManager = (NotificationManager) context
                 .getSystemService(Context.NOTIFICATION_SERVICE);
+
 
         Random random = new Random();
         mNotificationManager.notify(random.nextInt(), mBuilder.build());

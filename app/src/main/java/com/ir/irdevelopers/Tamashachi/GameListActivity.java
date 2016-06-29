@@ -25,10 +25,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import Adapter.PinnedGameAdapter;
+import DataModel.Event;
 import DataModel.Game;
 import Helpers.ConstantHelper;
+import Helpers.TimeoutJsonArrayRequest;
 import Helpers.VolleySingleton;
 import Views.PinnedSectionListView;
+import Views.TextViewFont;
 
 public class GameListActivity extends AppCompatActivity {
 
@@ -36,6 +39,8 @@ public class GameListActivity extends AppCompatActivity {
     private RecyclerView recycleView;
     private RequestQueue requestQueue;
     private PinnedSectionListView listview;
+    private TextViewFont header;
+    private Event event;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +48,7 @@ public class GameListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        header = (TextViewFont)findViewById(R.id.header);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -51,17 +57,25 @@ public class GameListActivity extends AppCompatActivity {
         }
 
         context = this;
-        final int event_uid = getIntent().getIntExtra("event_uid",0);
+        if (getIntent().hasExtra("event")) {
+            event = (Event) getIntent().getSerializableExtra("event");
+        } else {
+            Intent intent = new Intent(context, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+        header.setText(event.name);
         recycleView = (RecyclerView)findViewById(R.id.recycleView);
         listview = (PinnedSectionListView)findViewById(R.id.listview);
 
         Map<String, String> params = new HashMap();
-        params.put("event_uid", event_uid+"");
+        params.put("event_uid", event.uid+"");
         JSONObject parameters = new JSONObject(params);
         parameters=null;
 
         requestQueue = VolleySingleton.getInstance(context).getRequestQueue();
-        requestQueue.add(new JsonArrayRequest(Request.Method.GET, ConstantHelper.GAME+"?event_uid="+event_uid, parameters, new Response.Listener<JSONArray>() {
+        requestQueue.add(new TimeoutJsonArrayRequest(Request.Method.GET, ConstantHelper.GAME+"?event_uid="+event.uid, parameters, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 ArrayList<Game> games = Game.parse(response);
@@ -82,6 +96,16 @@ public class GameListActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (event==null){
+            Intent intent = new Intent(context, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
+
     public void backOnClick(View view) {
         finish();
     }
@@ -89,7 +113,6 @@ public class GameListActivity extends AppCompatActivity {
     public void ShareOnClick(View view) {
         Intent sharingIntent = new Intent(Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT,"شما به اپلیکیشن تماشاچی دعوت شده اید." + "\n\n" + "دانلود اپلیکیشن برای اندروید" + "\n" + "http://Tamashachi.AriTec.com/getapp");
-        startActivity(Intent.createChooser(sharingIntent, "Share using"));
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT,"شما به اپلیکیشن تماشاچی دعوت شده اید." + "\n"+"تماشاچی شما را از جدیدترین رویدادهای ورزشی با خبر می سازد و زمان پخش بازیهای تیم مورد علاقتان را به شما اطلاع می دهد."+"\n\n" + "دانلود اپلیکیشن برای اندروید" + "\n" + "http://Tamashachi.AriTec.com/getapp");        startActivity(Intent.createChooser(sharingIntent, "Share using"));
     }
 }

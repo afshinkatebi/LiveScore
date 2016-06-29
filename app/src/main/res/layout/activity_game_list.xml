@@ -36,6 +36,7 @@
                     android:src="@drawable/arrow_right" />
 
                 <Views.TextViewFont
+                    android:id="@+id/header"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
