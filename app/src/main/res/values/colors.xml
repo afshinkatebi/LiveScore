@@ -33,6 +33,6 @@
 
     <color name="primaryPressed">#bcbcbc</color>
     <color name="primaryFocused">#bcbcbc</color>
-    <color name="primary">#5b5b5b</color>
+    <color name="primary">#005b5b5b</color>
 
 </resources>

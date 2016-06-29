@@ -107,8 +107,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
                 View dialog = LayoutInflater.from(context).inflate(R.layout.dialog_news,null);
                 TextViewFont title = (TextViewFont) dialog.findViewById(R.id.title);
                 TextViewFont description = (TextViewFont) dialog.findViewById(R.id.description);
+                TextViewFont date = (TextViewFont) dialog.findViewById(R.id.date);
+
                 AutoNetworkImageView image = (AutoNetworkImageView) dialog.findViewById(R.id.image);
                 title.setText(news.title);
+                date.setText(news.getPersianDate());
                 description.setText(news.description);
                 image.setImageUrlWithAnim(news.getImageAddress(), VolleySingleton.getInstance(context).getImageLoader());
                 builder.setView(dialog);

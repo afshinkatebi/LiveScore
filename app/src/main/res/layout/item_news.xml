@@ -52,7 +52,6 @@
                 android:paddingTop="12dp"
                 android:paddingBottom="12dp"
                 android:paddingLeft="8dp"
-                android:text="دوشنبه 25 مرداد"
                 android:textColor="#fff"
                 android:textSize="11dp"
                 app:font="1" />
