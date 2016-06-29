@@ -131,6 +131,8 @@ public class PinnedGameAdapter extends BaseAdapter
         ArrayList<Game> newDataset = new ArrayList<>();
         String date = "";
         for (Game game : mDataset) {
+
+
             if (!game.date.substring(0, 10).equals(date)) {
                 newDataset.add(new Game(game.date));
                 date = game.date.substring(0, 10);
@@ -140,6 +142,15 @@ public class PinnedGameAdapter extends BaseAdapter
 
         mDataset.clear();
         mDataset.addAll(newDataset);
+    }
+
+
+    public int getUnplayedPosition(){
+        for(int i = 0 ; i<mDataset.size();i++){
+            if (mDataset.get(i).team_1_score.length()!=0)
+                return i;
+        }
+        return 0;
     }
 
 
