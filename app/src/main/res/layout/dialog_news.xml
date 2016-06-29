@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:background="?selectableItemBackground"
+        android:clickable="true"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Views.AutoNetworkImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/background2"
+                android:scaleType="fitXY" />
+
+            <Views.TextViewFont
+                android:id="@+id/titelnews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|bottom"
+                android:background="#99000000"
+                android:ellipsize="end"
+                android:gravity="right|center"
+                android:lines="2"
+                android:paddingBottom="4dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="4dp"
+                android:text="-"
+                android:textColor="#fff"
+                android:textSize="18dp"
+                app:font="1" />
+        </FrameLayout>
+
+        <Views.TextViewFont
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:gravity="right|center"
+            android:paddingBottom="4dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="4dp"
+            android:text="-"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18dp" />
+
+    </LinearLayout>
+
+</ScrollView>

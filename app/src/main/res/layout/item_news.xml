@@ -6,54 +6,39 @@
     android:layout_marginBottom="2dp"
     android:background="?selectableItemBackground"
     android:clickable="true"
-    android:orientation="vertical"
-    android:padding="8dp">
+    android:orientation="vertical">
 
-    <Views.NetworkImageViewSetImageManual
-        android:id="@+id/image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/slider2"
-        android:scaleType="centerCrop" />
-
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/image">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
+        <Views.AutoNetworkImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/background2"
+            android:scaleType="fitXY" />
+
+        <Views.TextViewFont
+            android:id="@+id/titelnews"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_gravity="center_horizontal|bottom"
+            android:background="#99000000"
+            android:ellipsize="end"
+            android:gravity="right|center"
+            android:lines="2"
+            android:paddingBottom="4dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="4dp"
+            android:text="-"
+            android:textColor="#fff"
+            android:textSize="18dp"
+            app:font="1" />
+    </FrameLayout>
 
-            <Views.TextViewFont
-                android:id="@+id/titelnews"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:gravity="right"
-                android:lines="2"
-                android:text="سشتایاش اشسیاش س  یش شسیشس اتاسشی شساا یشسااشستیاشسی شنتستشسای شااتشسیا "
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="18dp"
-                app:font="1" />
-
-
-            <Views.TextViewFont
-                android:id="@+id/description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:ellipsize="end"
-                android:gravity="right"
-                android:lines="4"
-                android:text="تینشسنتینشتنشسیتشس  نسشتنیتش ستتیمنشستیمنتمشس   شسیتشستی سینت شستیت شسنمشس یشتسیتشس میشتسشنت نسشتسشتی شنستیت"
-                android:textSize="18dp" />
-
-
-        </LinearLayout>
-
-    </RelativeLayout>
 
 </RelativeLayout>
+
