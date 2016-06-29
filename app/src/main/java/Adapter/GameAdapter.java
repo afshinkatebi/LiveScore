@@ -107,8 +107,13 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder> {
 
         holder.resault.setText(game.channel_name);
 
-        if (game.team_1_score.length()>0)
+        if (game.team_1_score.length()>0){
             holder.resault.setText(game.team_1_score + " - " + game.team_2_score);
+            holder.finishbg.setVisibility(View.VISIBLE);
+        }else{
+            holder.finishbg.setVisibility(View.GONE);
+
+        }
 
 
 
@@ -134,6 +139,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder> {
         private final CircleImageView team_2_image;
         private final TextViewFont date;
         private final TextViewFont resault;
+        private final View finishbg;
 
         // each data item is just a string in this case
         public View v;
@@ -146,6 +152,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder> {
             team_2_image = (de.hdodenhof.circleimageview.CircleImageView) v.findViewById(R.id.team_2_image);
             date = (TextViewFont) v.findViewById(R.id.date);
             resault = (TextViewFont) v.findViewById(R.id.resault);
+            finishbg =  v.findViewById(R.id.finishbg);
             this.v=v;
         }
     }
