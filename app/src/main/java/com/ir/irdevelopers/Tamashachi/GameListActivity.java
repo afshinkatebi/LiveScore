@@ -81,7 +81,7 @@ public class GameListActivity extends AppCompatActivity {
                 ArrayList<Game> games = Game.parse(response);
                 PinnedGameAdapter pinnedGameAdapter = new PinnedGameAdapter(context,games);
                 listview.setAdapter(pinnedGameAdapter);
-                listview.smoothScrollToPosition(pinnedGameAdapter.getUnplayedPosition());
+//                listview.smoothScrollToPosition(pinnedGameAdapter.getUnplayedPosition());
 //                GameAdapter adapter = new GameAdapter(context,games);
 //                recycleView.setLayoutManager(new LinearLayoutManager(context));
 //                recycleView.setAdapter(adapter);

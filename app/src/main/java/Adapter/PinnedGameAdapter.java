@@ -118,8 +118,13 @@ public class PinnedGameAdapter extends BaseAdapter
 
             vh.resault.setText(game.channel_name);
 
-            if (game.team_1_score.length() > 0)
+            if (game.team_1_score.length()>0){
                 vh.resault.setText(game.team_1_score + " - " + game.team_2_score);
+                vh.finishbg.setVisibility(View.VISIBLE);
+            }else{
+                vh.finishbg.setVisibility(View.GONE);
+
+            }
 
         }
 
@@ -147,7 +152,7 @@ public class PinnedGameAdapter extends BaseAdapter
 
     public int getUnplayedPosition(){
         for(int i = 0 ; i<mDataset.size();i++){
-            if (mDataset.get(i).team_1_score.length()!=0)
+            if (!mDataset.get(i).isHeader && mDataset.get(i).team_1_score.length()==0)
                 return i;
         }
         return 0;
@@ -163,6 +168,7 @@ public class PinnedGameAdapter extends BaseAdapter
         private final TextViewFont resault;
         private final TextViewFont header;
         private final View content;
+        private final View finishbg;
 
         // each data item is just a string in this case
         public View v;
@@ -176,6 +182,8 @@ public class PinnedGameAdapter extends BaseAdapter
             resault = (TextViewFont) v.findViewById(R.id.resault);
             header = (TextViewFont) v.findViewById(R.id.header);
             content = v.findViewById(R.id.content);
+            finishbg =  v.findViewById(R.id.finishbg);
+
             this.v = v;
         }
     }

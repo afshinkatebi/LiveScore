@@ -37,11 +37,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         // each data item is just a string in this case
         public AutoNetworkImageView image;
         public TextViewFont title;
+        public TextViewFont date;
         public View v;
 
         public ViewHolder(View v) {
             super(v);
             title = (TextViewFont) v.findViewById(R.id.title);
+            date = (TextViewFont) v.findViewById(R.id.date);
             image = (AutoNetworkImageView) v.findViewById(R.id.image);
             this.v=v;
         }
@@ -92,6 +94,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         final News news = mDataset.get(position);
         //TODO enja error daram
         holder.title.setText(news.title);
+        holder.date.setText(news.getPersianDate());
+
         holder.image.setImageUrlWithAnim(news.getImageAddress(), VolleySingleton.getInstance(context).getImageLoader());
         holder.v.setOnClickListener(new View.OnClickListener() {
             @Override
