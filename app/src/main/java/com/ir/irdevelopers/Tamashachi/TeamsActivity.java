@@ -104,13 +104,13 @@ public class TeamsActivity extends AppCompatActivity {
 
         // Check Token
         user_uid = SharedPrefrence.read(context, "user_uid");
-//        if (user_uid == null) {
-//            // APP NEED A RESTART
-//            Toast.makeText(context, "شما ثبت نام نشده اید! دوباره به صفحه خانگی فرستاده می شوید تا ثبت نام خودکار انجام شود", Toast.LENGTH_SHORT).show();
-//            Intent intent = new Intent(context, MainActivity.class);
-//            intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
-//            context.startActivity( intent );
-//        }
+        if (user_uid == null) {
+            // APP NEED A RESTART
+            Toast.makeText(context, "شما ثبت نام نشده اید! دوباره به صفحه خانگی فرستاده می شوید تا ثبت نام خودکار انجام شود", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(context, MainActivity.class);
+            intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
+            context.startActivity( intent );
+        }
 
 
         // load main events
