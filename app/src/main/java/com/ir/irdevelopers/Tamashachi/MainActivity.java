@@ -3,6 +3,7 @@ package com.ir.irdevelopers.Tamashachi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -38,6 +39,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 import Adapter.EventAdapter;
@@ -70,6 +72,17 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        String languageToLoad  = "en"; // your language
+        Locale locale = new Locale(languageToLoad);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+
+
         context = this;
         activity = this;
 

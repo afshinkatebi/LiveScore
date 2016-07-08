@@ -10,20 +10,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import Adapter.PinnedGameAdapter;
 import DataModel.Event;
 import DataModel.Game;
@@ -44,6 +39,8 @@ public class GameListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
