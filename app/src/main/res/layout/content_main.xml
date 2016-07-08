@@ -1,97 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nest"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#fff"
-    app:layout_behavior="Views.FixedScrollingViewBehavior">
+    app:layout_behavior="Views.FixedScrollingViewBehavior"
 
-    <LinearLayout
-        android:orientation="vertical"
+    android:layout_height="match_parent">
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nest"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:layout_above="@+id/banner_ad_view">
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/cardview"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="1dp">
+            android:orientation="vertical">
 
-
-            <Views.SliderLayoutRec
-                android:id="@+id/slider"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/background2">
-
-            </Views.SliderLayoutRec>
-
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/news"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/cardview"
-            android:layout_marginBottom="2dp"
-            android:layout_marginTop="2dp">
-
-            <FrameLayout
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark">
+                android:layout_marginTop="1dp">
+
+
+                <Views.SliderLayoutRec
+                    android:id="@+id/slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/background2">
+
+                </Views.SliderLayoutRec>
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/news"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cardview"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp">
 
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="OnclickNews"
-                    android:background="@drawable/my_actionbar_ripple"
-                    android:clickable="true">
+                    android:background="@color/colorPrimaryDark">
 
-                    <LinearLayout
+                    <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:layout_margin="12dp">
+                        android:background="@drawable/my_actionbar_ripple"
+                        android:clickable="true"
+                        android:onClick="OnclickNews">
 
-                        <Views.TextViewFont
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:drawablePadding="8dp"
-                            android:text="آخرین خبرها"
-                            android:textColor="@android:color/white"
-                            android:textSize="16dp"
-                            app:font="1" />
+                            android:layout_margin="12dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/newspaper"
-                            android:layout_marginLeft="8dp"/>
+                            <Views.TextViewFont
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:drawablePadding="8dp"
+                                android:text="آخرین خبرها"
+                                android:textColor="@android:color/white"
+                                android:textSize="16dp"
+                                app:font="1" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="8dp"
+                                android:src="@drawable/newspaper" />
 
 
-
-                    </LinearLayout>
-
+                        </LinearLayout>
 
 
+                    </FrameLayout>
                 </FrameLayout>
-            </FrameLayout>
-        </android.support.v7.widget.CardView>
+            </android.support.v7.widget.CardView>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycleView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#fff"
-            android:layout_below="@+id/news">
 
-        </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycleView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/news"
+                android:background="#fff" />
 
-    </LinearLayout>
 
-</android.support.v4.widget.NestedScrollView>
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <ir.adad.client.Banner
+        android:id="@+id/banner_ad_view"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
+

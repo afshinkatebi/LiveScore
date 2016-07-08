@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -37,6 +38,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import Adapter.EventAdapter;
 import DataModel.Event;
@@ -46,6 +48,9 @@ import Helpers.NetworkErrorHandler;
 import Helpers.TimeoutJsonArrayRequest;
 import Helpers.VolleySingleton;
 import Views.SliderLayoutRec;
+import ir.adad.client.AdListener;
+import ir.adad.client.AdView;
+import ir.adad.client.Adad;
 
 
 public class MainActivity extends AppCompatActivity
@@ -67,14 +72,19 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         context = this;
         activity = this;
-        setContentView(R.layout.activity_main);
 
+        Adad.initialize(getApplicationContext());
+
+
+        setContentView(R.layout.activity_main);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
+
+
 
         //slider start
 
@@ -204,6 +214,8 @@ public class MainActivity extends AppCompatActivity
 
 
     }
+
+
 
     @Override
     public void onBackPressed() {

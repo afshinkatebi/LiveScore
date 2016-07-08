@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <permission
         android:name="com.ir.irdevelopers.Tamashachi.permission.C2D_MESSAGE"
@@ -21,6 +22,15 @@
         android:theme="@style/AppTheme"
         android:largeHeap="true"
         tools:replace="android:label">
+
+        <meta-data android:name="AdadToken" android:value="d59bd8d203cb4d82a7543d842c5261d3" />
+        <meta-data android:name="AdadTestMode" android:value="false" />
+
+        <activity
+            android:name="ir.adad.client.AdadActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@android:style/Theme.Translucent"/>
+
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"
             android:exported="true"

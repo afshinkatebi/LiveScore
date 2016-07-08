@@ -16,8 +16,8 @@ android {
         applicationId "com.ir.irdevelopers.Tamashachi"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 7
-        versionName '1.7'
+        versionCode 8
+        versionName '1.8'
         multiDexEnabled true
 
     }
@@ -50,6 +50,7 @@ dependencies {
     compile 'com.github.wooplr:Spotlight:1.1'
     compile 'com.heinrichreimersoftware:material-intro:1.5.4'
     compile files('libs/acra-4.6.1.jar')
+    compile files('libs/adad-client-3.1.jar')
 }
 
 apply plugin: 'com.google.gms.google-services'
